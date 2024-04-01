@@ -1,23 +1,20 @@
-import Euclidian from "./components/main/Geometry/Euclidian";
-import Grid from "./components/main/Grid/Grid";
-import Taskbar from "./components/main/Taskbar/Taskbar";
-import EuclidianGallery from "./components/main/Tabs/EuclidianGallery";
-import Actions from "./components/main/Tabs/Actions";
-import Text from "./components/main/Text/Text";
-import Menu from "./components/main/Tabs/Menu";
-import GraphGallery from "./components/main/Tabs/GraphGallery";
-import Graphs from "./components/main/Geometry/Graphs";
+import Link from 'next/link';
 
 export default function Home() {
   return (<>
-    <Grid />
-    <Euclidian />
-    <Text/>
-    <Graphs />
-    <Taskbar />
-    <EuclidianGallery />
-    <GraphGallery />
-    <Menu />
-    <Actions />
+    <h1>8GRID</h1>
+    <br/>
+    <div
+      style = {{
+        display : 'flex',
+        padding : '1rem',
+        gap : '1rem',
+        
+      }}
+    >
+      <Link href={"/editor"} >EDIT</Link>
+      <Link href={"/scene"} >VIEW</Link>
+    </div>
   </>)
+
 }
