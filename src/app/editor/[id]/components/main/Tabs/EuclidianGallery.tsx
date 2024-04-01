@@ -54,7 +54,7 @@ export default function EuclidianGallery() {
         ctx.beginPath();
 
 
-        if (placing == "label"){
+        if (placing == "label") {
             ctx.fillStyle = transparent(accent, 0.4);
             ctx.rect(mpos.x, mpos.y, 30 * 16, 4 * 16);
             ctx.fill();
@@ -240,12 +240,12 @@ export default function EuclidianGallery() {
                 }
             } else if (placing == "label" && event.button == 0) {
                 var closest = 999999999;
-                labels.forEach(label=>{
-                    const pos = toLocal({x : label.left, y : label.top}, offset);
-                    closest = Math.min(closest, Distance_Squared({x : event.clientX, y : event.clientY}, {x : label.left, y : label.top}));
+                labels.forEach(label => {
+                    const pos = toLocal({ x: label.left, y: label.top }, offset);
+                    closest = Math.min(closest, Distance_Squared({ x: event.clientX, y: event.clientY }, { x: label.left, y: label.top }));
                 })
                 console.log(closest)
-                if (closest > 100000){
+                if (closest > 100000) {
                     set_labels(prev => [...prev, {
                         left: offseted_mpos.x,
                         top: offseted_mpos.y,
@@ -277,7 +277,7 @@ export default function EuclidianGallery() {
             window.removeEventListener("mousedown", mouseDown);
             window.removeEventListener("mousemove", mousemove);
         }
-    }, [points_data, inuse, mpos, size, accent, current_mode, offset, placing, points_calc_data, segments_data, set_points_calc_data, set_points_data, set_segmments_data, variables]);
+    }, [labels, set_graph, set_labels, points_data, inuse, mpos, size, accent, current_mode, offset, placing, points_calc_data, segments_data, set_points_calc_data, set_points_data, set_segmments_data, variables]);
     return (
         <>
             <canvas

@@ -360,7 +360,7 @@ export default function Euclidian() {
             window.removeEventListener("mouseup", MouseUp);
             window.removeEventListener("mousemove", MouseMove);
         }
-    }, [dragging, hovering_labels.length, hovering_graphs.length, points_calc, prevMpos.x, prevMpos.y, setPoints, set_select_rect, set_selected, variables, selecting, offset, points, selected, mpos, mode, select_rect, segments, can_select])
+    }, [dragging, hovering_labels.length, hovering_graphs.length, points_calc, prevMpos.x, prevMpos.y, setPoints, set_select_rect, set_selected, variables, selecting, offset, points, selected,  mode, select_rect, segments, can_select])
 
     useEffect(() => {
         const canvas = canvas_ref.current as HTMLCanvasElement;

@@ -88,7 +88,7 @@ const GraphComponent = React.memo((props: GraphProps) => {
         if (event.button == 0 && inEdit && btn && rect2 && (clientX > rect2.left && clientX < rect2.right && clientY > rect2.top && clientY < rect2.bottom)) {
             props.removeFunc();
         }
-    }, [hovered_labels.length, inEdit, props, set_mode, set_selected, mode])
+    }, [hovered_labels.length, inEdit,offset,size.x, props, set_mode, set_selected, mode])
     const Mup = (event: MouseEvent) => {
         set_dragging(false);
     }
