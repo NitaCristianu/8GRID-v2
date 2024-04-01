@@ -3,7 +3,7 @@ import Grid from "./components/main/Grid/Grid";
 import Text from "./components/main/Text/Text";
 import Graphs from "./components/main/Geometry/Graphs";
 import Others from "./components/Others";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../../../lib/prisma";
 
 export default async function Home(Properties: { params: { id: string } }) {
 
@@ -12,15 +12,8 @@ export default async function Home(Properties: { params: { id: string } }) {
   var segments = [];
   var labels = [];
 
-  const prisma = new PrismaClient();
-  try {
-    points = await prisma.point.findMany({ where: { worldId: Properties.params.id } });
-  }catch(error){
-    console.log(error);
-  }finally{
-    await prisma.$disconnect();
-  }
-
+  points = await prisma.point.findMany();
+  
   return (<>
     <Grid />
     <Euclidian />
