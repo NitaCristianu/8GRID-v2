@@ -3,18 +3,29 @@ import Grid from "./components/main/Grid/Grid";
 import Text from "./components/main/Text/Text";
 import Graphs from "./components/main/Geometry/Graphs";
 import Others from "./components/Others";
-import prisma from "../../../../lib/prisma";
+import { PrismaClient } from "@prisma/client";
 
 export default async function Home(Properties: { params: { id: string } }) {
-  const points = await prisma.point.findMany();
-  const points_calcs = await prisma.pointCalc.findMany({ where: { worldId: Properties.params.id } });
-  const segments = await prisma.segment.findMany({ where: { worldId: Properties.params.id } });
-  // const labels = await prisma.label.findMany({ where: { worldId: Properties.params.id } });
+
+  var points = [];
+  var points_calcs = [];
+  var segments = [];
+  var labels = [];
+
+  const prisma = new PrismaClient();
+  try {
+    points = await prisma.point.findMany({ where: { worldId: Properties.params.id } });
+  }catch(error){
+    console.log(error);
+  }finally{
+    await prisma.$disconnect();
+  }
+
   return (<>
     <Grid />
     <Euclidian />
     <Text />
     <Graphs />
-    <Others points={points} points_calc={points_calcs} segments={segments} labels={[]} />
+    <Others points={points} points_calc={points_calcs} segments={segments} labels={labels} />
   </>)
 }
