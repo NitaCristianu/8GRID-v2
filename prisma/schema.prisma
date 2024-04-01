@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  password  String
+  World     World[]
+}
+
+model World {
+  id        String   @id @default(uuid())
+  title     String
+  User      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  userId    String
+}
+
+model Point {
+  id      String @id @default(uuid())
+  tag     String // this should be a character
+  x       Int
+  y       Int
+  color   String
+  worldId String
+}
+
+model PointCalc {
+  id      String @id @default(uuid())
+  tag     String // this should be a character
+  formula String
+  color   String
+  worldId String
+}
+
+model Segment {
+  id         String @id @default(uuid())
+  from       String
+  to         String
+  color      String
+  renderMode String
+  worldId    String
+}
+
+model Label {
+  id      String @id @default(uuid())
+  left    Int
+  top     Int
+  content String
+  worldId String
+}
+
+model Graph {
+  range_x    Int
+  range_y    Int
+  resolution Int
+  id         String @id @default(uuid())
+  x          Int
+  y          Int
+  worldId    String
+}

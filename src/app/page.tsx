@@ -12,8 +12,8 @@ export default function Home() {
         
       }}
     >
-      <Link href={"/editor"} >EDIT</Link>
-      <Link href={"/scene"} >VIEW</Link>
+      <Link href={"/editor/6c831419-8ade-4dd8-a893-3d3aa71205dc"} >EDIT</Link>
+      <Link href={"/scene/6c831419-8ade-4dd8-a893-3d3aa71205dc"} >VIEW</Link>
     </div>
   </>)
 
