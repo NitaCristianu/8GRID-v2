@@ -7,19 +7,31 @@ import Text from "./components/main/Text/Text";
 import Menu from "./components/main/Tabs/Menu";
 import GraphGallery from "./components/main/Tabs/GraphGallery";
 import Graphs from "./components/main/Geometry/Graphs";
-import { useAtom } from "jotai";
-import { ePoints_Calc_data, ePoints_data } from "./data/elements";
+import prisma from "../../../../lib/prisma";
+import Others from "./components/Others";
 
 interface props {
-  params : {id : string},
+  params: { id: string },
 }
 
-export default async function Home(Properties : props) {
+export default async function Home(Properties: props) {
+
+
+  var points = [];
+  var points_calcs = [];
+  var segments = [];
+  var labels = [];
+
+  points = await prisma.Point.findMany();
+  points_calcs = await prisma.PointCalc.findMany();
+  segments = await prisma.Segment.findMany();
+  labels = await prisma.Label.findMany();
 
   return (<>
+    <Others points={points} points_calc={points_calcs} segments={segments} labels={labels} />
     <Grid />
     <Euclidian />
-    <Text/>
+    <Text />
     <Graphs />
     <Taskbar />
     <EuclidianGallery />

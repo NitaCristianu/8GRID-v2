@@ -1,4 +1,4 @@
-import { ePoint, ePoints_Calc, eSegment, Fragment, Tag, variable } from './props';
+import { ePoint, ePoints_Calc, eSegment, Fragment, func, Tag, variable } from './props';
 import { CELL_SIZE, GRID_POSITION, POINT_RADIUS, SEGMENT_WIDTH, vec2D } from './globals';
 import { v4 } from "uuid";
 
@@ -176,10 +176,10 @@ export function clmap(num: number, min: number, max: number) { return Math.min(M
 export function DistanceToSegmentSquared(pos: vec2D, segment: eSegment, points: ePoint[], points_calc: ePoints_Calc[], variables: variable[]) {
     const [pos1, pos2] = getSegmentCoords(segment, points, points_calc, variables);
 
-    if (segment.renderMode == "circle"){
+    if (segment.renderMode == "circle") {
         const center = {
-            x : ( pos1.x + pos2.x ) / 2,
-            y : ( pos1.y + pos2.y ) / 2
+            x: (pos1.x + pos2.x) / 2,
+            y: (pos1.y + pos2.y) / 2
         }
         var dist = Distance_Squared(pos, center) - Distance_Squared(pos1, center);
         dist = Math.abs(dist / 20);
@@ -293,7 +293,7 @@ export function IsSegmentInRect(segment: eSegment, points: ePoint[], points_calc
 }
 
 export function EqualSegments(a: eSegment, b: eSegment) {
-    return ( (a.from == b.from && a.to == b.to) || (a.to == b.from && a.from == b.to) ) && (a.renderMode == b.renderMode);
+    return ((a.from == b.from && a.to == b.to) || (a.to == b.from && a.from == b.to)) && (a.renderMode == b.renderMode);
 }
 
 export function DoesSegmentExist(segment: eSegment, segments: eSegment[]) {
@@ -431,10 +431,10 @@ export function ObtainPosition(formula: string, points: ePoint[], points_calc: e
     return { x: 0, y: 0 };
 }
 
-export function rgbToHex(colorInput : {r : number, g : number, b : number} | string | undefined) {
+export function rgbToHex(colorInput: { r: number, g: number, b: number } | string | undefined) {
     if (!colorInput) return "#ffffff";
-    const {r,g,b} = typeof(colorInput) == "string" ? parseRGB(colorInput) : colorInput;
-    const toHex = (c : number) => {
+    const { r, g, b } = typeof (colorInput) == "string" ? parseRGB(colorInput) : colorInput;
+    const toHex = (c: number) => {
         const hex = c.toString(16);
         return hex.length === 1 ? '0' + hex : hex;
     };
@@ -463,8 +463,8 @@ export function parseRGB(rgbString: string): rgb {
     return { r: 0, g: 0, b: 0 }
 }
 
-export function RGB2string(col : rgb | string){
-    if (typeof(col) == "string") return col;
+export function RGB2string(col: rgb | string) {
+    if (typeof (col) == "string") return col;
     return `rgb(${col.r},${col.g},${col.b})`;
 }
 
@@ -517,7 +517,46 @@ export function createFragmentList(string: string, tags: Tag[]): Fragment[] {
     return fragments;
 }
 
-export const transparent = (col : rgb | string, n : number)=>{
-    if (typeof(col) == 'string'){ col = parseRGB(col) };
+export const transparent = (col: rgb | string, n: number) => {
+    if (typeof (col) == 'string') { col = parseRGB(col) };
     return `rgba(${col.r}, ${col.g}, ${col.b}, ${n})`
+}
+
+export function encryptGraph(graph: {
+    x: number,
+    y: number,
+    range_x: number,
+    range_y: number,
+    id: number,
+    worldId: string,
+    functions: string
+}) {
+    return {
+        x: graph.x,
+        y: graph.y,
+        range_x: graph.range_x,
+        range_y: graph.range_y,
+        id: graph.id,
+        functions: JSON.parse(graph.functions)
+
+    };
+}
+
+export function cryptGraph(graph: {
+    x: number,
+    y: number,
+    range_x: number,
+    range_y: number,
+    id: number,
+    worldId: string,
+    functions: func[]
+}) {
+    return {
+        x: graph.x,
+        y: graph.y,
+        range_x: graph.range_x,
+        range_y: graph.range_y,
+        id: graph.id,
+        functions: JSON.stringify(graph.functions)
+    };
 }

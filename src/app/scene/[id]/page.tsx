@@ -17,10 +17,10 @@ export default async function Home(Properties: { params: { id: string } }) {
   segments = await prisma.Segment.findMany();
   labels = await prisma.Label.findMany();
   return (<>
+    <Others points={points} points_calc={points_calcs} segments={segments} labels={labels} />
     <Grid />
     <Euclidian />
     <Text />
     <Graphs />
-    <Others points={points} points_calc={points_calcs} segments={segments} labels={labels} />
   </>)
 }

@@ -67,4 +67,5 @@ model Graph {
   x          Int
   y          Int
   worldId    String
+  functions  String
 }
