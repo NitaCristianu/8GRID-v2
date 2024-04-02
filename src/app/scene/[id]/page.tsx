@@ -5,11 +5,6 @@ import Graphs from "./components/main/Geometry/Graphs";
 import Others from "./components/Others";
 import prisma from "../../../../lib/prisma";
 
-async function getPoints(){
-  const points = await prisma.point.findMany();
-  return points;
-}
-
 export default async function Home(Properties: { params: { id: string } }) {
 
   var points = [];
@@ -17,8 +12,10 @@ export default async function Home(Properties: { params: { id: string } }) {
   var segments = [];
   var labels = [];
 
-  points = await getPoints();
-  console.log(points)
+  points = await prisma.Point.findMany();
+  points_calcs = await prisma.PointCalc.findMany();
+  segments = await prisma.Segment.findMany();
+  labels = await prisma.Label.findMany();
   return (<>
     <Grid />
     <Euclidian />
