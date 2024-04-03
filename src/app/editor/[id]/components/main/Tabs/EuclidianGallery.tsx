@@ -136,9 +136,7 @@ export default function EuclidianGallery() {
             const offseted_mpos = toGlobal(mpos, offset);
             const { isHovering, Hovering_id, isCalculated } = GetAnyHoveringPoint(offseted_mpos, points_data, points_calc_data, variables);
             if (
-                (current_mode == "menu" && event.clientX > size.x * 0.75) ||
                 (current_mode == "euclidian" && event.clientX > size.x * 0.69) ||
-                (current_mode == "graph" && event.clientX > size.x * 0.69) ||
                 (event.clientX < 16 * 6)
             ) return;
             if (placing == "ePoint" && event.button == 0) {
