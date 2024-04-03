@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "../../../../lib/prisma";
-import { ePoint, ePoints_Calc, eSegment, WorldParams } from "@/app/editor/[id]/data/props";
+import { ePoint, ePoints_Calc, eSegment, Label, WorldParams } from "@/app/editor/[id]/data/props";
 
 // Upload Wolrd to data base
 export async function POST(req: Request) {
@@ -73,19 +73,46 @@ export async function POST(req: Request) {
             await prisma.PointCalc.update({
                 where: { id: p.id },
                 data: {
-                    formula : p.formula,
-                    color : p.color,
-                    tag : p.tag
+                    formula: p.formula,
+                    color: p.color,
+                    tag: p.tag
                 }
             })
         } else {
             await prisma.PointCalc.create({
                 data: {
-                    tag : p.tag,
-                    formula : p.formula,
-                    color : p.color,
+                    tag: p.tag,
+                    formula: p.formula,
+                    color: p.color,
                     id: p.id,
                     worldId: data.id
+                }
+            })
+        }
+    }
+    async function UpdateLabel(l: Label) {
+        const record = await prisma.Label.findUnique({
+            where: {
+                id: l.id
+            }
+        });
+        if (record) {
+            await prisma.Label.update({
+                where: { id: l.id },
+                data: {
+                    left : l.left,
+                    top : l.top,
+                    content : l.content
+                }
+            })
+        } else {
+            await prisma.Label.create({
+                data: {
+                    id : l.id,
+                    worldId : data.id,
+                    left : l.left,
+                    top : l.top,
+                    content : l.content
                 }
             })
         }
@@ -113,6 +140,13 @@ export async function POST(req: Request) {
         }
     })
     data.points_calc.forEach(UpdatePointCalc)
+    await prisma.Label.deleteMany({
+        where: {
+            worldId: data.id,
+            NOT: { id: { in: data.labels.map(l => l.id), }, }
+        }
+    })
+    data.labels.forEach(UpdateLabel)
     return NextResponse.json({
         message: "Uploaded data succes"
     });

@@ -4,11 +4,9 @@ import { GRAPHS } from "@/app/scene/[id]/data/elements";
 import { ACCENT, GRID_POSITION, HOVERING_GRAPHS, HOVERING_LABELS, MODE, SECONDARY, SELECTED_GRAPH, VARIABLES, vec2D } from "@/app/scene/[id]/data/globals";
 import { IsPointInRect, parseRGB, ReplaceLetter, rgb, RGB2string, toGlobal, toLocal, transparent } from "@/app/scene/[id]/data/management";
 import { Graph } from "@/app/scene/[id]/data/props";
-import useResize from "@/app/scene/[id]/hooks/useResize";
 import { useAtom } from "jotai";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { motion } from 'framer-motion';
-import { usePrevious } from "@/app/scene/[id]/hooks/usePrevious";
 
 const Plot = dynamic(() => import('react-plotly.js'), { ssr: false })
 
