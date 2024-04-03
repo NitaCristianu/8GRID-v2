@@ -5,7 +5,7 @@ import { ePoints_Calc_data, ePoints_data, eSegments_data, labels_data } from "..
 import { memo, useEffect } from 'react';
 import { AUTHOR, WORLD_ID, WORLD_NAME } from "../data/globals";
 
-export default memo((props: WorldParams) => {
+const Others = memo((props: WorldParams) => {
     const [_, set_points] = useAtom(ePoints_data);
     const [__, set_points_calc] = useAtom(ePoints_Calc_data);
     const [___, set_segments] = useAtom(eSegments_data);
@@ -26,3 +26,5 @@ export default memo((props: WorldParams) => {
 
     return (<div></div>);
 });
+Others.displayName = 'editor-others'
+export default Others;
