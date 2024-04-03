@@ -40,8 +40,10 @@ const BACKGROUND_SHADER = `
 
     void main() {
         vec2 st = (gl_FragCoord.xy + offset * vec2(-1., 1.)) / size;
-        vec3 color1 = rgb(43, 107, 217);
-        vec3 color2 = rgb(0, 42, 144);
+        // vec3 color1 = rgb(43, 107, 217);
+        // vec3 color2 = rgb(0, 42, 144);
+        vec3 color1 = rgb(99, 99, 99);
+        vec3 color2 = rgb(0, 0, 0);
         //vec3 color1 = background / 255.;
         //vec3 color2 = background / 255. * 0.5;
         float t = noise(st * 1.2);

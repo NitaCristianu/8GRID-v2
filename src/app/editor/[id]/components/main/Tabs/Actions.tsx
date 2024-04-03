@@ -295,7 +295,7 @@ export default function Actions() {
                         >{property.id.toUpperCase()}</motion.p>
                         {property.type == "color" ? <input
                             type="color"
-                            title = "color-lbl"
+                            title="color-lbl"
                             style={{
                                 zIndex: 99,
                                 width: "2rem",
@@ -314,7 +314,7 @@ export default function Actions() {
                             onChange={(event) => modifyProperty(property, event)}
                         /> : null}
                         {property.type == "checkbox" ? <input
-                            title = "checkbox-lbl"
+                            title="checkbox-lbl"
                             type="checkbox"
                             style={{
                                 zIndex: 99,
@@ -365,6 +365,7 @@ export default function Actions() {
                             onChange={(event) => modifyProperty(property, event)}
                         /> : null}
                         {property.type == "text" ? <textarea
+                            key={v4()}
                             style={{
                                 zIndex: 99,
                                 border: "none",

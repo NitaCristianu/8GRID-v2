@@ -11,7 +11,7 @@ import SelectionIcon from "./assets/SelectionIcon.png";
 import MenuIcon from "./assets/MenuIcon2.png";
 import EuclidianGallery from "./assets/GeometryGallery.png";
 import TextIc from "./assets/Text.png";
-import Graph from "./assets/Graph.png";
+import Graph from "./assets/Graph2.png";
 
 const buttons: mode[] = [
     "menu",
@@ -61,7 +61,7 @@ export default function Taskbar() {
                     marginTop : current_mode == type ? '5%' : 0,
 
                 }}
-            >{(type == "euclidian" ? "BULD" : type.toUpperCase()) + " MODE"}</motion.p>
+            >{(type == "euclidian" ? "BUILD" : type.toUpperCase()) + " MODE"}</motion.p>
         </motion.div>))}
 
 

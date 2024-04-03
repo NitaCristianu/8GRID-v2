@@ -315,8 +315,7 @@ export default function Euclidian() {
         }
         const MouseMove = (event: MouseEvent) => {
             // if (mode != "selection" || !can_select) { set_select_rect([]); return; }
-            if (mode != "selection") { setSelecting(false); set_select_rect([]); return; }
-            console.log("a");
+            if (mode != "selection") { setSelecting(false); set_select_rect([]); }
             SetMpos({ 'x': event.clientX, 'y': event.clientY });
             if (selecting) {
                 set_select_rect(prev => [prev[0], toGlobal(mpos, offset)]);

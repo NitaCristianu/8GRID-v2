@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "../../../../lib/prisma";
-import { ePoint, eSegment, WorldParams } from "@/app/editor/[id]/data/props";
+import { ePoint, ePoints_Calc, eSegment, WorldParams } from "@/app/editor/[id]/data/props";
 
 // Upload Wolrd to data base
 export async function POST(req: Request) {
@@ -35,7 +35,6 @@ export async function POST(req: Request) {
         }
     }
     async function UpdateSegment(s: eSegment) {
-        console.log(s);
         const record = await prisma.Segment.findUnique({
             where: {
                 id: s.id
@@ -52,7 +51,6 @@ export async function POST(req: Request) {
                 }
             })
         } else {
-            console.log("A")
             await prisma.Segment.create({
                 data: {
                     from: s.from,
@@ -60,6 +58,33 @@ export async function POST(req: Request) {
                     color: s.color,
                     renderMode: s.renderMode,
                     id: s.id,
+                    worldId: data.id
+                }
+            })
+        }
+    }
+    async function UpdatePointCalc(p: ePoints_Calc) {
+        const record = await prisma.PointCalc.findUnique({
+            where: {
+                id: p.id
+            }
+        });
+        if (record) {
+            await prisma.PointCalc.update({
+                where: { id: p.id },
+                data: {
+                    formula : p.formula,
+                    color : p.color,
+                    tag : p.tag
+                }
+            })
+        } else {
+            await prisma.PointCalc.create({
+                data: {
+                    tag : p.tag,
+                    formula : p.formula,
+                    color : p.color,
+                    id: p.id,
                     worldId: data.id
                 }
             })
@@ -80,6 +105,14 @@ export async function POST(req: Request) {
         }
     })
     data.segments.forEach(UpdateSegment)
+
+    await prisma.PointCalc.deleteMany({
+        where: {
+            worldId: data.id,
+            NOT: { id: { in: data.points_calc.map(p => p.id), }, }
+        }
+    })
+    data.points_calc.forEach(UpdatePointCalc)
     return NextResponse.json({
         message: "Uploaded data succes"
     });
