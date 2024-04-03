@@ -23,3 +23,6 @@ export const VARIABLES = atom<variable[]>([]);
 export const SELECTED_GRAPH = atom<string>("");
 export const HOVERING_GRAPHS = atom<string[]>([]);
 export const HOVERING_LABELS = atom<string[]>([]);
+export const WORLD_NAME = atom<string>("Template name");
+export const WORLD_ID = atom<string>("");
+export const AUTHOR = atom<string>("mateioprea");

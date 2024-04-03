@@ -1,23 +1,60 @@
 "use client"
-import { ACCENT, BACKGROUND, MODE, SECONDARY, SHOW_GRID } from "@/app/editor/[id]/data/globals";
+import { ACCENT, AUTHOR, BACKGROUND, MODE, SECONDARY, SHOW_GRID, WORLD_ID, WORLD_NAME } from "@/app/editor/[id]/data/globals";
 import Link from 'next/link';
 import { useAtom } from "jotai";
 import { motion } from 'framer-motion';
 import style from "./styles.module.css";
+import { WorldParams } from '../../../data/props';
+import { ePoints_data, eSegments_data } from "../../../data/elements";
 
 export default function Menu() {
     const [current_mode, set_mode] = useAtom(MODE);
     const [accent, set_accent] = useAtom(ACCENT);
-    const [secondary, set_secondary] = useAtom(SECONDARY);
-    const [bgr, set_bgr] = useAtom(BACKGROUND);
-    const [grid, set_grid] = useAtom(SHOW_GRID);
+
+    const [world_name] = useAtom(WORLD_NAME);
+    const [world_id] = useAtom(WORLD_ID);
+    const [author] = useAtom(AUTHOR);
+    const [points] = useAtom(ePoints_data);
+    const [segments] = useAtom(eSegments_data);
+
+    async function OnSave() {
+        try{
+            const data: WorldParams = {
+                name : world_name,
+                id : world_id,
+                author : author,
+                points : points,
+                segments : segments,
+                points_calc : [],
+                labels : [],
+                graphs : [] 
+            }
+            const response = await fetch('/api/management', {
+                method :"POST",
+                body : JSON.stringify(data),
+                headers : {
+                    'Content-Type' : 'application/json'
+                }
+            });
+            if (response.ok){
+                // handle succses
+            }else{
+                // error
+                console.log("E");
+            }
+        }catch(error){
+            // network error
+            console.log(error)
+        }
+
+    }
 
     return (<motion.div
         className={style.Menu}
         style={{
             left: current_mode == "menu" ? "calc(76% - 1rem)" : "100%",
-            display:'flex',
-            flexDirection : 'column',
+            display: 'flex',
+            flexDirection: 'column',
         }}
     >
         <h1
@@ -26,11 +63,11 @@ export default function Menu() {
         >MENU</h1>
         <br />
         <br />
-        <motion.button>Save</motion.button>
+        <button onClick={OnSave} >Save</button>
         <br />
         <Link style={{
-            textAlign : 'center',
-            
+            textAlign: 'center',
+
         }} href={"/"} >Quit</Link>
     </motion.div >)
 }

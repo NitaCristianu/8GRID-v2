@@ -3,13 +3,7 @@ import Link from "next/link";
 import { ePoint, ePoints_Calc, eSegment, Label } from "../data/props";
 import { useAtom } from "jotai";
 import { ePoints_Calc_data, ePoints_data, eSegments_data, labels_data } from "../data/elements";
-
-export interface WorldParams {
-    points: ePoint[],
-    points_calc: ePoints_Calc[],
-    segments: eSegment[],
-    labels : Label[]
-}
+import { WorldParams } from "@/app/editor/[id]/data/props";
 
 export default function Others(props: WorldParams) {
     const [_, set_points] = useAtom(ePoints_data);

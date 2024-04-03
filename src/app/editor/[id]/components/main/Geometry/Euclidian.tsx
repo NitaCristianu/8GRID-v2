@@ -316,6 +316,7 @@ export default function Euclidian() {
         const MouseMove = (event: MouseEvent) => {
             // if (mode != "selection" || !can_select) { set_select_rect([]); return; }
             if (mode != "selection") { setSelecting(false); set_select_rect([]); return; }
+            console.log("a");
             SetMpos({ 'x': event.clientX, 'y': event.clientY });
             if (selecting) {
                 set_select_rect(prev => [prev[0], toGlobal(mpos, offset)]);
@@ -373,7 +374,7 @@ export default function Euclidian() {
         DrawSelected(context, selected, points, segments, points_calc, variables, offset);
         DrawPoints(context, points, points_calc, variables, offset);
         if (selecting) DrawSelection(context, select_rect, offset);
-    }, [points_calc, variables, points, size, offset, selected, select_rect, selecting, segments, hovering_graphs, hovering_labels])
+    }, [points_calc, variables, points, size, offset, selected, select_rect, selecting, segments, hovering_graphs, hovering_labels, mpos])
 
     return (<canvas
         ref={canvas_ref}
