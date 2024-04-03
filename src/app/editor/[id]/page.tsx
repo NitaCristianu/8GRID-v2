@@ -16,11 +16,11 @@ interface props {
 
 export default async function Home(Properties: props) {
 
-  const points = await prisma.Point.findMany();
-  const points_calcs = await prisma.PointCalc.findMany();
-  const segments = await prisma.Segment.findMany();
-  const labels = await prisma.Label.findMany();
-  const worlds = await prisma.World.findMany();
+  const points = await prisma.Point.findMany({where : {worldId : Properties.params.id}});
+  const points_calcs = await prisma.PointCalc.findMany({where : {worldId : Properties.params.id}});
+  const segments = await prisma.Segment.findMany({where : {worldId : Properties.params.id}});
+  const labels = await prisma.Label.findMany({where : {worldId : Properties.params.id}});
+  const worlds = await prisma.World.findMany({where : {id : Properties.params.id}});
   const graphs = [];
 
   return (<>
