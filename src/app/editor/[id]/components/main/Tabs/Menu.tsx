@@ -5,12 +5,11 @@ import { useAtom } from "jotai";
 import { motion } from 'framer-motion';
 import style from "./styles.module.css";
 import { WorldParams } from '../../../data/props';
-import { ePoints_Calc_data, ePoints_data, eSegments_data, labels_data } from "../../../data/elements";
+import { ePoints_Calc_data, ePoints_data, eSegments_data, GRAPHS, labels_data } from "../../../data/elements";
 
 export default function Menu() {
     const [current_mode, set_mode] = useAtom(MODE);
     const [accent, set_accent] = useAtom(ACCENT);
-
     const [world_name] = useAtom(WORLD_NAME);
     const [world_id] = useAtom(WORLD_ID);
     const [author] = useAtom(AUTHOR);
@@ -18,6 +17,7 @@ export default function Menu() {
     const [segments] = useAtom(eSegments_data);
     const [points_calc] = useAtom(ePoints_Calc_data);
     const [labels] = useAtom(labels_data);
+    const [graphs] = useAtom(GRAPHS);
 
     async function OnSave() {
         try{
@@ -29,7 +29,15 @@ export default function Menu() {
                 segments : segments,
                 points_calc : points_calc,
                 labels : labels,
-                graphs : [] 
+                graphs :  graphs.map(g=>({
+                    x : g.x,
+                    y : g.y,
+                    id : g.id,
+                    functions : JSON.stringify(g.functions),
+                    range_x : g.range_x,
+                    range_y : g.range_y,
+                    resolution : g.resolution
+                }))
             }
             const response = await fetch('/api/management', {
                 method :"POST",

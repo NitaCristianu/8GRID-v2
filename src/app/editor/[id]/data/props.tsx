@@ -29,7 +29,7 @@ export interface WorldParams {
         range_x: number,
         range_y: number,
         resolution: number,
-        id: number,
+        id: string,
         functions: string
     }[]
 }

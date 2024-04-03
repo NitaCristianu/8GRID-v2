@@ -127,7 +127,6 @@ export default function EuclidianGallery() {
     useEffect(() => {
         const mouseDown = (event: MouseEvent) => {
             if (current_mode != "euclidian") return;
-            if (event.clientX < 64) return;
             const rect = gallery_ref.current != null ? gallery_ref.current.getBoundingClientRect() : null;
             if (rect && rect.left < event.clientX &&
                 rect.right > event.clientX &&
@@ -137,7 +136,7 @@ export default function EuclidianGallery() {
             const { isHovering, Hovering_id, isCalculated } = GetAnyHoveringPoint(offseted_mpos, points_data, points_calc_data, variables);
             if (
                 (current_mode == "euclidian" && event.clientX > size.x * 0.69) ||
-                (event.clientX < 16 * 6)
+                (event.clientX < 16 * 8)
             ) return;
             if (placing == "ePoint" && event.button == 0) {
                 if (!isHovering) {

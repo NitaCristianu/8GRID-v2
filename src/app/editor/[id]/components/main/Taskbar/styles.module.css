@@ -18,6 +18,7 @@
     backdrop-filter: blur(6px);
     -webkit-user-select: none;
     background: rgba(10, 10, 10, 0.7);
+    border : 1px solid rgb(175, 175, 175);
     border-radius: .8rem;
     user-select: none;
     display: flex;

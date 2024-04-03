@@ -16,15 +16,24 @@ interface props {
 
 export default async function Home(Properties: props) {
 
-  const points = await prisma.Point.findMany({where : {worldId : Properties.params.id}});
-  const points_calcs = await prisma.PointCalc.findMany({where : {worldId : Properties.params.id}});
-  const segments = await prisma.Segment.findMany({where : {worldId : Properties.params.id}});
-  const labels = await prisma.Label.findMany({where : {worldId : Properties.params.id}});
-  const world = await prisma.World.findUnique({where : {id : Properties.params.id}});
-  const graphs = [];
+  const points = await prisma.Point.findMany({ where: { worldId: Properties.params.id } });
+  const points_calcs = await prisma.PointCalc.findMany({ where: { worldId: Properties.params.id } });
+  const segments = await prisma.Segment.findMany({ where: { worldId: Properties.params.id } });
+  const labels = await prisma.Label.findMany({ where: { worldId: Properties.params.id } });
+  var graphs = await prisma.Graph.findMany({ where: { worldId: Properties.params.id } });
+  const world = await prisma.World.findUnique({ where: { id: Properties.params.id } });
+  graphs = graphs.map(w => ({
+    x: w.x,
+    y: w.y,
+    range_x: w.range_x,
+    range_y: w.range_y,
+    resolution: w.resolution,
+    id: w.id,
+    functions: JSON.parse(w.functions)
+  }));
 
   return (<>
-    <Others author={world.userId} name = {world.title} id = {Properties.params.id} graphs={graphs} points={points} points_calc={points_calcs} segments={segments} labels={labels} />
+    <Others author={world.userId} name={world.title} id={Properties.params.id} graphs={graphs} points={points} points_calc={points_calcs} segments={segments} labels={labels} />
     <Grid />
     <Euclidian />
     <Text />

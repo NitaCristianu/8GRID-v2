@@ -100,19 +100,61 @@ export async function POST(req: Request) {
             await prisma.Label.update({
                 where: { id: l.id },
                 data: {
-                    left : l.left,
-                    top : l.top,
-                    content : l.content
+                    left: l.left,
+                    top: l.top,
+                    content: l.content
                 }
             })
         } else {
             await prisma.Label.create({
                 data: {
-                    id : l.id,
-                    worldId : data.id,
-                    left : l.left,
-                    top : l.top,
-                    content : l.content
+                    id: l.id,
+                    worldId: data.id,
+                    left: l.left,
+                    top: l.top,
+                    content: l.content
+                }
+            })
+        }
+    }
+    async function updateGraphs(g: {
+        range_x: number,
+        range_y: number,
+        x: number,
+        y: number,
+        id: string,
+        worldId: string,
+        functions: string,
+        resolution: number,
+    }) {
+        const record = await prisma.Graph.findUnique({
+            where: {
+                id: g.id
+            }
+        });
+        if (record) {
+            await prisma.Graph.update({
+                where: { id: g.id },
+                data: {
+                    x: g.x,
+                    y: g.y,
+                    range_x: g.range_x,
+                    range_y: g.range_y,
+                    resolution: g.resolution,
+                    functions: g.functions
+                }
+            })
+        } else {
+            await prisma.Graph.create({
+                data: {
+                    id: g.id,
+                    worldId: data.id,
+                    x: g.x,
+                    y: g.y,
+                    range_x: g.range_x,
+                    range_y: g.range_y,
+                    resolution: g.resolution,
+                    functions: g.functions,
                 }
             })
         }
@@ -147,6 +189,13 @@ export async function POST(req: Request) {
         }
     })
     data.labels.forEach(UpdateLabel)
+    await prisma.Graph.deleteMany({
+        where: {
+            worldId: data.id,
+            NOT: { id: { in: data.graphs.map(g => g.id), }, }
+        }
+    })
+    data.graphs.forEach(updateGraphs)
     return NextResponse.json({
         message: "Uploaded data succes"
     });
