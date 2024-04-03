@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import style from "./styles.module.css";
 import { useAtom } from "jotai";
-import { ACCENT, GRID_POSITION, MODE, POINT_RADIUS, SELECTED, VARIABLES, blocks } from "@/app/editor/[id]/data/globals";
+import { ACCENT, GRID_POSITION, MODE, POINT_RADIUS, SELECTED, VARIABLES, blocks, mode } from "@/app/editor/[id]/data/globals";
 import { useEffect, useRef, useState } from "react";
 import useResize from "@/app/editor/[id]/hooks/useResize";
 import { AddPoint, Distance_Squared, DoesSegmentExist, GetAnyHoveringPoint, GetHoveringPoint, ObtainPosition, getCoords, getUniqueTag, toGlobal, toLocal, transparent } from "@/app/editor/[id]/data/management";
@@ -13,7 +13,7 @@ import { BACKGROUND } from '../../../data/globals';
 
 export default function EuclidianGallery() {
     const [placing, setPlacing] = useState(null);
-    const [current_mode, set_mode] = useAtom(MODE);
+    const [current_mode, set_mode] = useAtom<mode>(MODE);
 
     const essentials: blocks[] = ["ePoint", "eSegment", "label", "graph"];
     const construct: blocks[] = ["eCenter", "ePerpendicular"];
@@ -135,6 +135,12 @@ export default function EuclidianGallery() {
                 rect.bottom > event.clientY) return;
             const offseted_mpos = toGlobal(mpos, offset);
             const { isHovering, Hovering_id, isCalculated } = GetAnyHoveringPoint(offseted_mpos, points_data, points_calc_data, variables);
+            if (
+                (current_mode == "menu" && event.clientX > size.x * 0.75) ||
+                (current_mode == "euclidian" && event.clientX > size.x * 0.69) ||
+                (current_mode == "graph" && event.clientX > size.x * 0.69) ||
+                (event.clientX < 16 * 6)
+            ) return;
             if (placing == "ePoint" && event.button == 0) {
                 if (!isHovering) {
                     set_points_data(prev => [...prev, {
