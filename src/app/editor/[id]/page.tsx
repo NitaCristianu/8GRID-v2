@@ -20,11 +20,11 @@ export default async function Home(Properties: props) {
   const points_calcs = await prisma.PointCalc.findMany({where : {worldId : Properties.params.id}});
   const segments = await prisma.Segment.findMany({where : {worldId : Properties.params.id}});
   const labels = await prisma.Label.findMany({where : {worldId : Properties.params.id}});
-  const worlds = await prisma.World.findMany({where : {id : Properties.params.id}});
+  const world = await prisma.World.findUnique({where : {id : Properties.params.id}});
   const graphs = [];
 
   return (<>
-    <Others author={worlds[0].userId} name = {worlds[0].title} id = {Properties.params.id} graphs={graphs} points={points} points_calc={points_calcs} segments={segments} labels={labels} />
+    <Others author={world.userId} name = {world.title} id = {Properties.params.id} graphs={graphs} points={points} points_calc={points_calcs} segments={segments} labels={labels} />
     <Grid />
     <Euclidian />
     <Text />
