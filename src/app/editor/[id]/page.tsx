@@ -16,6 +16,7 @@ interface props {
 
 export default async function Home(Properties: props) {
 
+<<<<<<< HEAD
   const points = await prisma.Point.findMany();
   const points_calcs = await prisma.PointCalc.findMany();
   const segments = await prisma.Segment.findMany();
@@ -25,6 +26,21 @@ export default async function Home(Properties: props) {
 
   return (<>
     <Others author={worlds[0].userId} name = {worlds[0].title} id = {Properties.params.id} graphs={graphs} points={points} points_calc={points_calcs} segments={segments} labels={labels} />
+=======
+
+  var points = [];
+  var points_calcs = [];
+  var segments = [];
+  var labels = [];
+
+  points = await prisma.Point.findMany();
+  points_calcs = await prisma.PointCalc.findMany();
+  segments = await prisma.Segment.findMany();
+  labels = await prisma.Label.findMany();
+
+  return (<>
+    <Others points={points} points_calc={points_calcs} segments={segments} labels={labels} />
+>>>>>>> 883896071189006c88e6e519149ee9316aa5bb29
     <Grid />
     <Euclidian />
     <Text />
