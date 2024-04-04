@@ -35,7 +35,6 @@ export default function Achors() {
 
     useEffect(() => {
         set_closest(GetClosestAnchor({ x: -offset.x + size.x / 2, y: -offset.y + size.y / 2 }, anchors));
-        console.log(closest);
     }, [offset, anchors, size, set_closest, closest])
 
     const height = 80;

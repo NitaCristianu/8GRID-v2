@@ -188,6 +188,12 @@ export async function POST(req: Request) {
             })
         }
     }
+    await prisma.World.update({
+        where: { id: data.id },
+        data: {
+            title: data.name
+        }
+    })
     await prisma.Point.deleteMany({
         where: {
             worldId: data.id,
