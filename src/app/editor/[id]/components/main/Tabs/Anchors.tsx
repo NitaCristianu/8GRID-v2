@@ -6,6 +6,7 @@ import { anchor } from '../../../data/props';
 import { Distance_Squared } from "../../../data/management";
 import { useEffect, useState } from "react";
 import useResize from "../../../hooks/useResize";
+import { v4 } from "uuid";
 
 function GetClosestAnchor(point: vec2D, anchors: anchor[]) {
     var min = Infinity;
@@ -53,6 +54,7 @@ export default function Achors() {
     >
         {...anchors.sort((a, b) => a.order - b.order).map(anchor => (
             <motion.div
+                key={v4()};
                 style={{
                     width: height,
                     aspectRatio: 1,
