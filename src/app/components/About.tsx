@@ -51,9 +51,9 @@ export default function About() {
                 marginTop: '9%',
                 marginLeft: '55%'
             }}
-        >"Here, intricate concepts unfold effortlessly,
+        >Here, intricate concepts unfold effortlessly,
             empowering young minds to navigate the complexities
-            of mathematics with grace and proficiency."
+            of mathematics with grace and proficiency.
             ~oprea si nita</h1>
 
     </motion.div >
