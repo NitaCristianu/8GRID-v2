@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["jsonProtocol"]
 }
 
@@ -68,4 +68,13 @@ model Graph {
   y          Int
   worldId    String
   functions  String
+}
+
+model Anchor {
+  x Int
+  y Int
+  id String @id @default(uuid())
+  tag String
+  order Int
+  worldId String
 }

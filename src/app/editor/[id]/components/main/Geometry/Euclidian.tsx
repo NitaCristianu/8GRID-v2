@@ -305,7 +305,7 @@ export default function Euclidian() {
             } else if (event.button == 2) {
                 /// UNSEELCT
                 set_selected([]);
-            } else if (event.button == 0 && mode == "selection" && !isHovering) {
+            } else if (event.button == 0 && mode == "selection" && !isHovering && can_select) {
                 // SELECT RECT
                 setSelecting(true);
                 set_select_rect([

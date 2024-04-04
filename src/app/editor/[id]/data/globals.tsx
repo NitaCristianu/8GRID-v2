@@ -28,25 +28,4 @@ export const WORLD_NAME = atom<string>("Template name");
 export const WORLD_ID = atom<string>("");
 export const AUTHOR = atom<string>("mateioprea");
 export const ANCHORS = atom<anchor[]>([
-    {
-        x: 520,
-        y: 530,
-        tag: "Intro",
-        order: 1,
-        id: v4()
-    },
-    {
-        x: 1520,
-        y: 530,
-        tag: "After",
-        order: 2,
-        id: v4()
-    },
-    {
-        x: 1020,
-        y: 1530,
-        tag: "End",
-        order: 3,
-        id: v4()
-    }
 ]);

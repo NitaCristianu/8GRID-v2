@@ -1,5 +1,5 @@
 "use client"
-import { ACCENT, AUTHOR, BACKGROUND, MODE, SECONDARY, SHOW_GRID, WORLD_ID, WORLD_NAME } from "@/app/editor/[id]/data/globals";
+import { ACCENT, ANCHORS, AUTHOR, BACKGROUND, MODE, SECONDARY, SHOW_GRID, WORLD_ID, WORLD_NAME } from "@/app/editor/[id]/data/globals";
 import Link from 'next/link';
 import { useAtom } from "jotai";
 import { motion } from 'framer-motion';
@@ -18,6 +18,7 @@ export default function Menu() {
     const [points_calc] = useAtom(ePoints_Calc_data);
     const [labels] = useAtom(labels_data);
     const [graphs] = useAtom(GRAPHS);
+    const [anchors] = useAtom(ANCHORS);
 
     async function OnSave() {
         try{
@@ -27,6 +28,7 @@ export default function Menu() {
                 author : author,
                 points : points,
                 segments : segments,
+                anchors : anchors,
                 points_calc : points_calc,
                 labels : labels,
                 graphs :  graphs.map(g=>({

@@ -31,8 +31,8 @@ const GraphComponent = React.memo((props: GraphProps) => {
     const div = useRef<HTMLDivElement>(null);
     const bin = useRef<HTMLDivElement>(null);
     const [mpos, SetMpos] = useState<vec2D>({ 'x': 0, 'y': 0 });
-    const [Graphs, setGraphs] = useAtom(GRAPHS);
     const prevMpos = usePrevious(mpos);
+    const [Graphs, setGraphs] = useAtom(GRAPHS);
     var step = range / props.data.resolution;
     const data: { x: number[], y: number[], name: string, marker: { color: string | rgb | undefined, width: number }, mode: string }[] = useMemo(() => {
         const d: { x: number[], y: number[], name: string, marker: { color: string | rgb | undefined, width: number }, mode: string }[] = [];

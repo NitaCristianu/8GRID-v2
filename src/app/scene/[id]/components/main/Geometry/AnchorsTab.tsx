@@ -2,7 +2,7 @@
 import { useAtom } from "jotai"
 import { ANCHORS, GRID_POSITION, vec2D } from "../../../data/globals";
 import { motion } from "framer-motion";
-import { anchor } from '../../../data/props';
+import { anchor } from "@/app/editor/[id]/data/props";
 import { Distance_Squared } from "../../../data/management";
 import { useEffect, useState } from "react";
 import useResize from "../../../hooks/useResize";
@@ -35,6 +35,7 @@ export default function Achors() {
 
     useEffect(() => {
         set_closest(GetClosestAnchor({ x: -offset.x + size.x / 2, y: -offset.y + size.y / 2 }, anchors));
+        console.log(closest);
     }, [offset, anchors, size, set_closest, closest])
 
     const height = 80;
@@ -54,16 +55,15 @@ export default function Achors() {
     >
         {...anchors.sort((a, b) => a.order - b.order).map(anchor => (
             <motion.div
-                key={v4()};
+                key={v4()}
                 style={{
-                    width: height,
-                    aspectRatio: 1,
                     borderRadius: '0.8rem',
                     padding: '.5rem',
                     fontFamily: "Poppins",
                     fontWeight: 500,
                     fontSize: '1.5rem',
-                    userSelect: 'none'
+                    userSelect: 'none',
+                    opacity: closest ? (closest.id == anchor.id ? 1 : 0.5) : 0.5
                 }}
                 whileHover={{
                     scale: 1.05,
@@ -78,10 +78,6 @@ export default function Achors() {
                         x: size.x / 2 - anchor.x,
                         y: size.y / 2 - anchor.y
                     })
-                }}
-                animate={{
-                    opacity: closest ? (closest.id == anchor.id ? 1 : 0.5) : 0.5
-
                 }}
             >{anchor.tag}</motion.div>
         ))}

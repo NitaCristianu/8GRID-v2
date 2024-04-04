@@ -1,9 +1,9 @@
 "use client"
-import { ePoint, ePoints_Calc, eSegment, Label, WorldParams } from "../data/props";
+import { ePoint, ePoints_Calc, eSegment, Label, WorldParams, anchor } from '../data/props';
 import { useAtom } from "jotai";
 import { ePoints_Calc_data, ePoints_data, eSegments_data, GRAPHS, labels_data } from "../data/elements";
 import { memo, useEffect } from 'react';
-import { AUTHOR, WORLD_ID, WORLD_NAME } from "../data/globals";
+import { ANCHORS, AUTHOR, WORLD_ID, WORLD_NAME } from "../data/globals";
 
 const Others = memo((props : any) => {
     const [_, set_points] = useAtom(ePoints_data);
@@ -14,6 +14,8 @@ const Others = memo((props : any) => {
     const [______, set_id] = useAtom(WORLD_ID);
     const [_______, set_author] = useAtom(AUTHOR);
     const [________, set_graph] = useAtom(GRAPHS);
+    const [_________, set_anchors] = useAtom(ANCHORS);
+
 
     useEffect(() => {
         set_name(props.name);
@@ -24,6 +26,7 @@ const Others = memo((props : any) => {
         set_points_calc(props.points_calc);
         set_segments(props.segments);
         set_labels(props.labels);
+        set_anchors(props.anchors);
     }, []);
 
     return (<div></div>);

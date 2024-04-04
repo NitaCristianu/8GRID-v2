@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "../../../../lib/prisma";
-import { ePoint, ePoints_Calc, eSegment, Label, WorldParams } from "@/app/editor/[id]/data/props";
+import { anchor, ePoint, ePoints_Calc, eSegment, Label, WorldParams } from "@/app/editor/[id]/data/props";
 
 // Upload Wolrd to data base
 export async function POST(req: Request) {
@@ -159,6 +159,35 @@ export async function POST(req: Request) {
             })
         }
     }
+    async function updateAnchors(a: anchor) {
+        const record = await prisma.Anchor.findUnique({
+            where: {
+                id: a.id
+            }
+        });
+        if (record) {
+            await prisma.Anchor.update({
+                where: { id: a.id },
+                data: {
+                    x: a.x,
+                    y: a.y,
+                    tag: a.tag,
+                    order: a.order
+                }
+            })
+        } else {
+            await prisma.Anchor.create({
+                data: {
+                    id: a.id,
+                    worldId: data.id,
+                    x: a.x,
+                    y: a.y,
+                    tag: a.tag,
+                    order: a.order
+                }
+            })
+        }
+    }
     await prisma.Point.deleteMany({
         where: {
             worldId: data.id,
@@ -196,6 +225,13 @@ export async function POST(req: Request) {
         }
     })
     data.graphs.forEach(updateGraphs)
+    await prisma.Anchor.deleteMany({
+        where: {
+            worldId: data.id,
+            NOT: { id: { in: data.anchors.map(a => a.id), }, }
+        }
+    })
+    data.anchors.forEach(updateAnchors)
     return NextResponse.json({
         message: "Uploaded data succes"
     });

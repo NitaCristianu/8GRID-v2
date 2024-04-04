@@ -19,6 +19,7 @@ export interface WorldParams {
     id : string,
     name : string,
     author : string,
+    anchors : anchor[],
     points: ePoint[],
     points_calc: ePoints_Calc[],
     segments: eSegment[],

@@ -9,7 +9,8 @@ import GraphGallery from "./components/main/Tabs/GraphGallery";
 import Graphs from "./components/main/Geometry/Graphs";
 import prisma from "../../../../lib/prisma";
 import Others from "./components/Others";
-import Achors from "./components/main/Tabs/Anchors";
+import AchorsTab from "./components/main/Tabs/AnchorsTab";
+import Anchors from "./components/main/Geometry/Anchors";
 
 interface props {
   params: { id: string },
@@ -22,6 +23,7 @@ export default async function Home(Properties: props) {
   const segments = await prisma.Segment.findMany({ where: { worldId: Properties.params.id } });
   const labels = await prisma.Label.findMany({ where: { worldId: Properties.params.id } });
   var graphs = await prisma.Graph.findMany({ where: { worldId: Properties.params.id } });
+  const anchors = await prisma.Anchor.findMany({where : {worldId : Properties.params.id}})
   const world = await prisma.World.findUnique({ where: { id: Properties.params.id } });
   graphs = graphs.map(w => ({
     x: w.x,
@@ -34,16 +36,17 @@ export default async function Home(Properties: props) {
   }));
 
   return (<>
-    <Others author={world.userId} name={world.title} id={Properties.params.id} graphs={graphs} points={points} points_calc={points_calcs} segments={segments} labels={labels} />
+    <Others author={world.userId} name={world.title} id={Properties.params.id} anchors = {anchors} graphs={graphs} points={points} points_calc={points_calcs} segments={segments} labels={labels} />
     <Grid />
     <Euclidian />
+    <Anchors /> 
     <Text />
     <Graphs />
     <Taskbar />
     <EuclidianGallery />
     <GraphGallery />
     <Menu />
-    <Achors/>
+    <AchorsTab />
     <Actions />
   </>)
 }

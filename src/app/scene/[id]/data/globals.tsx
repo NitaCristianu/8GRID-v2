@@ -1,5 +1,6 @@
 import { atom } from "jotai";
 import { Graph, variable } from "./props";
+import { anchor } from "@/app/editor/[id]/data/props";
 
 export type mode = "menu" | "selection" | "euclidian" | "graph";
 export type blocks = null | "ePoint" | "eSegment" | "eCenter" | "ePerpendicular" | "label" | "graph";
@@ -23,3 +24,4 @@ export const VARIABLES = atom<variable[]>([]);
 export const SELECTED_GRAPH = atom<string>("");
 export const HOVERING_GRAPHS = atom<string[]>([]);
 export const HOVERING_LABELS = atom<string[]>([]);
+export const ANCHORS = atom<anchor[]>([]);

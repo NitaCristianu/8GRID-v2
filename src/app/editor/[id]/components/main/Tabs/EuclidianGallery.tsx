@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import style from "./styles.module.css";
 import { useAtom } from "jotai";
-import { ACCENT, GRID_POSITION, MODE, POINT_RADIUS, SELECTED, VARIABLES, blocks, mode } from "@/app/editor/[id]/data/globals";
+import { ACCENT, ANCHORS, GRID_POSITION, MODE, POINT_RADIUS, SELECTED, VARIABLES, blocks, mode } from "@/app/editor/[id]/data/globals";
 import { useEffect, useRef, useState } from "react";
 import useResize from "@/app/editor/[id]/hooks/useResize";
 import { AddPoint, Distance_Squared, DoesSegmentExist, GetAnyHoveringPoint, GetHoveringPoint, ObtainPosition, getCoords, getUniqueTag, toGlobal, toLocal, transparent } from "@/app/editor/[id]/data/management";
@@ -33,6 +33,7 @@ export default function EuclidianGallery() {
     const [labels, set_labels] = useAtom(labels_data);
     const [graph, set_graph] = useAtom(GRAPHS);
     const [inuse, set_inuse] = useState<string[]>([]);
+    const [anchors, set_anchors] = useAtom(ANCHORS);
     const [variables, set_variables] = useAtom(VARIABLES);
 
     useEffect(() => {
@@ -266,8 +267,14 @@ export default function EuclidianGallery() {
                     id: v4(),
                     functions: []
                 }])
-            }else if (placing == "anchor" && event.button == 0){
-                
+            } else if (placing == "anchor" && event.button == 0) {
+                set_anchors(prev => [...prev, {
+                    tag: "anchor",
+                    order: 1,
+                    id : v4(),
+                    x : offseted_mpos.x,
+                    y : offseted_mpos.y
+                }])
             }
             if (isHovering && inuse.findIndex(id => id == Hovering_id) == -1 && event.button == 0) set_inuse(prev => [...prev, Hovering_id]);
             if (event.button == 2) set_inuse([]);
