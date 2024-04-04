@@ -1,16 +1,17 @@
 import { atom } from "jotai";
-import { Graph, variable } from "./props";
+import { anchor, Graph, variable } from "./props";
+import { v4 } from "uuid";
 
 export type mode = "menu" | "selection" | "euclidian" | "graph";
-export type blocks = null | "ePoint" | "eSegment" | "eCenter" | "ePerpendicular" | "label" | "graph";
+export type blocks = null | "ePoint" | "eSegment" | "eCenter" | "ePerpendicular" | "label" | "graph" | "anchor";
 export type elements = blocks | "label"
 
-export interface vec2D { x : number, y : number }
+export interface vec2D { x: number, y: number }
 export const CELL_SIZE = 90;
 export const DRAG_SPEED = 80;
 export const POINT_RADIUS = 20;
 export const SEGMENT_WIDTH = 7;
-export const GRID_POSITION = atom<vec2D>({x : 0, y : 0})
+export const GRID_POSITION = atom<vec2D>({ x: 0, y: 0 })
 export const SELECTED = atom<string[]>([]);
 export const CAN_SELECT = atom<boolean>(true);
 export const SELECT_RECT = atom<vec2D[]>([]);
@@ -26,3 +27,26 @@ export const HOVERING_LABELS = atom<string[]>([]);
 export const WORLD_NAME = atom<string>("Template name");
 export const WORLD_ID = atom<string>("");
 export const AUTHOR = atom<string>("mateioprea");
+export const ANCHORS = atom<anchor[]>([
+    {
+        x: 520,
+        y: 530,
+        tag: "Intro",
+        order: 1,
+        id: v4()
+    },
+    {
+        x: 1520,
+        y: 530,
+        tag: "After",
+        order: 2,
+        id: v4()
+    },
+    {
+        x: 1020,
+        y: 1530,
+        tag: "End",
+        order: 3,
+        id: v4()
+    }
+]);

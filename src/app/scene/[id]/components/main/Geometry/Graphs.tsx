@@ -91,7 +91,7 @@ const GraphComponent = React.memo((props: GraphProps) => {
             layout={{
                 width: width,
                 height: height,
-
+                showlegend : true,
 
                 xaxis: {
                     zeroline: true,

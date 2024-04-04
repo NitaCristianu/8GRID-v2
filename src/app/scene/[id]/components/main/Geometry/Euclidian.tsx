@@ -105,6 +105,7 @@ function DrawSegment(ctx: CanvasRenderingContext2D, segment: eSegment, from: vec
     }
 }
 
+
 function DrawSegments(ctx: CanvasRenderingContext2D, points: ePoint[], points_calc: ePoints_Calc[], segments: eSegment[], offset: vec2D, variables: variable[]) {
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = "high";

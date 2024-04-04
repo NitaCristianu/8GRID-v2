@@ -15,7 +15,7 @@ export default function EuclidianGallery() {
     const [placing, setPlacing] = useState(null);
     const [current_mode, set_mode] = useAtom<mode>(MODE);
 
-    const essentials: blocks[] = ["ePoint", "eSegment", "label", "graph"];
+    const essentials: blocks[] = ["ePoint", "eSegment", "label", "graph", "anchor"];
     const construct: blocks[] = ["eCenter", "ePerpendicular"];
 
     const [accent, __] = useAtom(ACCENT);
@@ -266,6 +266,8 @@ export default function EuclidianGallery() {
                     id: v4(),
                     functions: []
                 }])
+            }else if (placing == "anchor" && event.button == 0){
+                
             }
             if (isHovering && inuse.findIndex(id => id == Hovering_id) == -1 && event.button == 0) set_inuse(prev => [...prev, Hovering_id]);
             if (event.button == 2) set_inuse([]);

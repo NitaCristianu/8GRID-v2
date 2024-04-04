@@ -7,14 +7,7 @@ import { ePoints_Calc_data, ePoints_data, eSegments_data } from "@/app/editor/[i
 import { ObtainPosition, decomposeSegment, findNonSurroundedLetters, getCoords, getSegmentCoords, getUniqueLetters, rgbToHex, transparent } from "@/app/editor/[id]/data/management";
 import { ePoint, ePoints_Calc, eSegment, point_prop, point_prop_calc, segment_props, total_props } from "@/app/editor/[id]/data/props";
 import { clamp } from "three/src/math/MathUtils.js";
-import { CompressedTextureLoader } from "three";
 import { v4 } from "uuid";
-
-interface copies {
-    points: ePoint[],
-    calcs: ePoints_Calc[],
-    segments: eSegment[]
-}
 
 function getObject(id: string | null | undefined, points: ePoint[], points_calc: ePoints_Calc[], segments: eSegment[]) {
     if (typeof (id) != "string") return -1;

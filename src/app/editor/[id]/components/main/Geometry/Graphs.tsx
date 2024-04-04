@@ -148,7 +148,7 @@ const GraphComponent = React.memo((props: GraphProps) => {
             layout={{
                 width: width,
                 height: height,
-
+                showlegend: true,                
 
                 xaxis: {
                     zeroline: true,
@@ -175,8 +175,7 @@ const GraphComponent = React.memo((props: GraphProps) => {
                 },
                 plot_bgcolor: 'rgba(0,0,0,0)',
                 paper_bgcolor: 'rgba(0,0,0,0)',
-                annotations: [
-                ],
+                annotations: [],
             }}
         />
 

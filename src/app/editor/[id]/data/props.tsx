@@ -92,6 +92,14 @@ export interface variable {
     value: number
 }
 
+export interface anchor {
+    id : string,
+    x : number,
+    y : number,
+    order : number,
+    tag : string
+}
+
 export const point_prop = [
     "color",
     "tag",

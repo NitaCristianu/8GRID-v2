@@ -9,6 +9,7 @@ import GraphGallery from "./components/main/Tabs/GraphGallery";
 import Graphs from "./components/main/Geometry/Graphs";
 import prisma from "../../../../lib/prisma";
 import Others from "./components/Others";
+import Achors from "./components/main/Tabs/Anchors";
 
 interface props {
   params: { id: string },
@@ -42,6 +43,7 @@ export default async function Home(Properties: props) {
     <EuclidianGallery />
     <GraphGallery />
     <Menu />
+    <Achors/>
     <Actions />
   </>)
 }

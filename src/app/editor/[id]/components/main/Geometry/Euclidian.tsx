@@ -1,8 +1,8 @@
 "use client"
 import { ePoints_Calc_data, ePoints_data, eSegments_data } from "@/app/editor/[id]/data/elements";
-import { CAN_SELECT, GRID_POSITION, HOVERING_GRAPHS, HOVERING_LABELS, MODE, POINT_RADIUS, SEGMENT_WIDTH, SELECTED, SELECT_RECT, VARIABLES, vec2D } from "@/app/editor/[id]/data/globals";
+import { ANCHORS, CAN_SELECT, GRID_POSITION, HOVERING_GRAPHS, HOVERING_LABELS, MODE, POINT_RADIUS, SEGMENT_WIDTH, SELECTED, SELECT_RECT, VARIABLES, vec2D } from "@/app/editor/[id]/data/globals";
 import { AddPoint, Distance_Squared, GetClosestPoint, GetHovering, GetHoveringPoint, IsPointInRect, IsSegmentInRect, ObtainPosition, decomposeSegment, getCoords, getSegmentCoords, isEPointsCalc, toGlobal, toLocal } from '@/app/editor/[id]/data/management';
-import { ePoint, ePoints_Calc, eSegment, variable } from "@/app/editor/[id]/data/props";
+import { anchor, ePoint, ePoints_Calc, eSegment, variable } from "@/app/editor/[id]/data/props";
 import { usePrevious } from "@/app/editor/[id]/hooks/usePrevious";
 import useResize from "@/app/editor/[id]/hooks/useResize";
 import { useAtom } from "jotai";
@@ -229,6 +229,34 @@ function DrawSelection(ctx: CanvasRenderingContext2D, rect: vec2D[], offset: vec
     ctx.fill();
     ctx.stroke();
     ctx.closePath();
+}
+
+function DrawAnchors(ctx: CanvasRenderingContext2D, anchors: anchor[], offset: vec2D) {
+    anchors.forEach(anchor => {
+        const pos = toLocal(anchor, offset);
+
+        ctx.beginPath();
+        ctx.fillStyle = "white";
+
+        ctx.arc(pos.x, pos.y, POINT_RADIUS, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.fillStyle = "black";
+        ctx.arc(pos.x, pos.y, POINT_RADIUS * .9, 0, 2 * Math.PI);
+
+        ctx.fill();
+        ctx.closePath();
+
+
+        ctx.beginPath();
+        ctx.fillStyle = "white";
+        ctx.font = "Poppins";
+
+        ctx.fillText(`${anchor.order}`, pos.x, pos.y+3);
+        ctx.closePath();
+    })
 }
 
 export default function Euclidian() {
