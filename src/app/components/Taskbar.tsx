@@ -67,7 +67,7 @@ export default function Taskbar({ menus }) {
 
             >
 
-                {menus.map(menu => <Button menu={menu} />)}
+                {menus.map(menu => <Button key= {menu} menu={menu} />)}
             </motion.div >
             <div
                 style={{

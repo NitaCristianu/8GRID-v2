@@ -5,7 +5,7 @@ import Taskbar from "./components/Taskbar";
 import About from "./components/About";
 import Worlds from "./components/Worlds";
 import Tutorials from "./components/Tutorials";
-import Workspace from "./components/Workspace";
+// import Workspace from "./components/Workspace";
 // import { motion } from "framer-motion";
 // import { useEffect, useState } from "react";
 
@@ -26,8 +26,8 @@ export default function Home() {
           return <Worlds/>
           else if(menu == "tutorials")
            return <Tutorials/>
-           else if(menu == "workspace")
-           return <Workspace/>
+          //  else if(menu == "workspace")
+          //  return <Workspace/>
       })}
 
 

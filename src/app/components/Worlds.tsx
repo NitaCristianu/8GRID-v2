@@ -4,6 +4,7 @@ import styles from "./styles.module.css";
 import useResize from "../editor/[id]/hooks/useResize";
 import { ChangeEvent, useEffect, useState } from 'react';
 import Link from "next/link";
+import { v4 } from "uuid";
 
 export interface world {
     title: string,
@@ -228,7 +229,7 @@ export default function Worlds() {
 
                         }}
                     >+</motion.button>
-                    {...(data.filter(world => world.userId == formData.name)).map(world => <Card user={formData.name} {...world} />)}
+                    {...(data.filter(world => world.userId == formData.name)).map(world => <Card user={formData.name} {...world} key = {v4()} />)}
                 </motion.div> : null}
             <motion.div
                 style={{

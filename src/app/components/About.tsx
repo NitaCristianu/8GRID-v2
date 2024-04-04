@@ -53,7 +53,8 @@ export default function About() {
             }}
         >"Here, intricate concepts unfold effortlessly,
             empowering young minds to navigate the complexities
-            of mathematics with grace and proficiency."<br />~oprea si nita</h1>
-        
+            of mathematics with grace and proficiency."
+            ~oprea si nita</h1>
+
     </motion.div >
 }

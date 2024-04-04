@@ -171,7 +171,7 @@ export default function Worlds() {
                     zIndex : 10
                 }}
             >
-                {...info.map(tutorial_info => <Card {...tutorial_info} />)}
+                {...info.map(tutorial_info => <Card key = {tutorial_info.title} {...tutorial_info} />)}
 
             </motion.div>
         </motion.div>
