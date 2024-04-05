@@ -54,10 +54,17 @@ export default function About() {
                 marginLeft: '1%',
                 fontFamily :"Poppins"
             }}
-        >{`"Here, intricate concepts unfold effortlessly,
-            empowering young minds to navigate the complexities
-            of mathematics with grace and proficiency.
-            "`}</h1>
+        >{`The 8grid platform provides students with the opportunity to improve their maths skills`}</h1>
+        <h1
+         style={{
+            fontSize: 17,
+            color: "#a3c2c2",
+            width: '40%',
+            marginTop: '2%',
+            marginLeft: '1%',
+            fontFamily :"Poppins"
+        }}
+    >{"Teachers can quickly create interactive lessons, reaching a global audience"}</h1>
         <br />
         <br />
         <h1

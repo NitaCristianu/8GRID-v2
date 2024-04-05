@@ -14,8 +14,8 @@ function Card(props: world) {
     return <motion.div
         key={props.id}
         style={{
-            width: 250,
-            height: 250,
+            width: 205,
+            height: 205,
             background: "linear-gradient(45deg, rgba(15, 15, 15, .1) 0%, rgba(30,30,30,.8) 100%)",
             border: "2px solid rgb(200, 200, 200)",
             borderRadius: "0.8rem",
@@ -145,8 +145,8 @@ export default function Workspace() {
     return <motion.div
         id={"explorer"}
         style={{
-            width: size.x,
-            height: size.y,
+            width: '100%',
+            height: '100%',
             background: "black",
         }}
     >
@@ -181,7 +181,7 @@ export default function Workspace() {
                 width: size.x / 2,
                 aspectRatio: 1,
                 scale: 6,
-                background: "radial-gradient(circle, rgba(73,170, 249, 0.44) 0%, rgba(0,0,0,0) 50%)",
+                background: "radial-gradient(circle, rgba(73,70, 249, 0.44) 0%, rgba(0,0,0,0) 50%)",
                 position: 'absolute',
                 zIndex: 0,
                 left: '0%',
@@ -202,12 +202,13 @@ export default function Workspace() {
         >
             <div
                 style={{
-                    background: "rgb(20, 20, 20)",
-                    height: '100%',
-                    width: '60%',
+                    border: '1px solid rgb(194, 194, 194)',
+                    background: "rgb(20, 20, 20, 0.4)",
+                    height: '90%',
+                    width: '80%',
                     borderRadius: '0.8rem',
                     zIndex: 50,
-                    display : 'flexs',
+                    display : 'flex',
                     flexDirection : 'row',
                     overflowY : "scroll",
                     flexWrap : 'wrap',
@@ -232,10 +233,12 @@ export default function Workspace() {
                     borderRadius: '0.8rem',
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'center',
                     paddingTop: '6%',
                     border: '1px solid rgb(194, 194, 194)',
-                    gap: '1.5rem'
+                    gap: '1.5rem',
+                    marginLeft : '5%',
+                    padding : '1.5%',
+                    alignItems : 'center',
                 }}
             >
 
