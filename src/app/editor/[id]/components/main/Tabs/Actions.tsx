@@ -350,7 +350,7 @@ export default function Actions() {
                                 borderRadius: "0.8rem"
                             }}
                             ref={t_area}
-                            placeholder={`${((points_calc.findIndex(p => p.id == selected[0])) > -1 ? points_calc[(points_calc.findIndex(p => p.id == selected[0]))] : "").formula}`}
+                            placeholder={`${((points_calc.findIndex(p => p.id == selected[0])) > -1 ? points_calc[(points_calc.findIndex(p => p.id == selected[0]))].formula : "")}`}
                             onChange={(event) => {
                                 points_calc[(points_calc.findIndex(p => p.id == selected[0]))].formula = event.target.value;
                                 t_area.current.value = points_calc[(points_calc.findIndex(p => p.id == selected[0]))].formula;
