@@ -29,7 +29,6 @@ export default function Achors() {
         }
         const m_up = (event: MouseEvent) => {
             if (event.button == 2) {
-                console.log("A")
                 setInEdit("");
             }
             setDragging("");
@@ -169,7 +168,9 @@ export default function Achors() {
                                 borderRadius: ".3rem",
                             }}
                             onClick={() => {
-                                const clone = anchors.splice(anchors.findIndex(a => a.id == anchor.id), 1);
+                                var clone = [...anchors];
+                                const i = clone.findIndex(a=>a.id == anchor.id);
+                                clone.splice(i, 1);
                                 setAnchors(clone);
                             }}
                         >

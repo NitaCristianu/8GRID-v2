@@ -10,7 +10,7 @@ import Tutorials from "./components/Tutorials";
 // import { useEffect, useState } from "react";
 
 export default function Home() {
-  const menus = ["my worlds", "tutorials", "about"];
+  const menus = ["sketches", "tutorials", "about"];
   
   return (
     <div style={{overflowX :'hidden'}}>
@@ -22,7 +22,7 @@ export default function Home() {
       {menus.map((menu) => {
         if (menu == "about")
           return (<About/>)
-          else if (menu == "my worlds")
+          else if (menu == "sketches")
           return <Worlds/>
           else if(menu == "tutorials")
            return <Tutorials/>

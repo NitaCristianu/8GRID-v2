@@ -1,8 +1,8 @@
 import { MouseEventHandler, useEffect, useRef } from "react";
 import katex from 'katex';
 import { useAtom } from "jotai";
-import { SECONDARY } from "@/app/editor/[id]/data/globals";
-import { transparent } from "@/app/editor/[id]/data/management";
+import { SECONDARY } from "@/app/scene/[id]/data/globals";
+import { transparent } from "@/app/scene/[id]/data/management";
 
 export default function KaTeX({ tex, className = "" }: { tex: string, className?: string, onClick? : (event:MouseEventHandler<HTMLDivElement>)=>void }) {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -12,7 +12,7 @@ export default function KaTeX({ tex, className = "" }: { tex: string, className?
             if (containerRef.current) {
                 containerRef.current.style.background = transparent(sec, 0.3);
             }
-            katex.render(tex, containerRef.current as HTMLDivElement);
+            katex.render(tex, containerRef.current as HTMLDivElement, {output : 'mathml'});
         } catch (error) {
             if (containerRef.current) {
                 containerRef.current.style.background = "rgba(255,100,100,.2)";

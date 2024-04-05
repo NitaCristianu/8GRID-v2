@@ -1,6 +1,8 @@
 "use client"
 import { motion } from "framer-motion";
 import useResize from "../editor/[id]/hooks/useResize";
+import tri_img from "../components/assets/triangle.png";
+import Image from "next/image";
 
 export default function About() {
     const size = useResize();
@@ -48,13 +50,47 @@ export default function About() {
                 fontSize: 17,
                 color: "#a3c2c2",
                 width: '40%',
-                marginTop: '9%',
-                marginLeft: '55%'
+                marginTop: '2%',
+                marginLeft: '1%',
+                fontFamily :"Poppins"
             }}
-        >Here, intricate concepts unfold effortlessly,
+        >{`"Here, intricate concepts unfold effortlessly,
             empowering young minds to navigate the complexities
             of mathematics with grace and proficiency.
-            ~oprea si nita</h1>
+            "`}</h1>
+        <br />
+        <br />
+        <h1
+        style={{
+            fontFamily : "Poppins" ,
+            width : '20%',
+            marginLeft : '1%'
+        }}
+        >
+            8Grid is the perfect tool
+            to organize and share
+            your interactive math sketches.
+        </h1>
+        <h1
+        style={{
+            fontFamily : "Poppins" ,
+            width : '20%',
+            marginLeft : '1%',
+            color : "rgb(65, 114, 249)"
+        }}
+        >
+            Simply create an account from
+            sketches section and start
+            experimenting 
 
+        </h1>
+        <Image
+            src = {tri_img}
+            alt = "triangle"
+            style={{
+                marginLeft : "40%",
+                scale : 1
+            }}
+        />
     </motion.div >
 }

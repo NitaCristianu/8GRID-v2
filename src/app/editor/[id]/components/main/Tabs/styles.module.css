@@ -11,17 +11,17 @@
 }
 
 .EuclidianGallery::-webkit-scrollbar{
-    width : 1rem;
+    width : .5rem;
 }
 .EuclidianGallery::-webkit-scrollbar-track{
-    background: rgb(4, 28, 118);
+    background: rgb(255, 255, 255);
     border-radius: 0.8rem;
     margin-block: 0.6rem;
     margin-right: 0.2rem;
 }
 .EuclidianGallery::-webkit-scrollbar-thumb{
     background: rgb(199, 209, 250);
-    border : .25rem solid rgb(4, 28, 114);
+    border : .25rem solid rgb(255, 255, 255);
     border-radius: 0.8rem;
 }
 

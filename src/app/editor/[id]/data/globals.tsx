@@ -3,7 +3,7 @@ import { anchor, Graph, variable } from "./props";
 import { v4 } from "uuid";
 
 export type mode = "menu" | "selection" | "euclidian" | "graph";
-export type blocks = null | "ePoint" | "eSegment" | "eCenter" | "ePerpendicular" | "label" | "graph" | "anchor";
+export type blocks = null | "calc" | "ePoint" | "eSegment" | "eCenter" | "ePerpendicular" | "label" | "graph" | "anchor";
 export type elements = blocks | "label"
 
 export interface vec2D { x: number, y: number }

@@ -4,9 +4,12 @@ import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 import { gapSize } from 'three/examples/jsm/nodes/Nodes.js';
 import useResize from '../editor/[id]/hooks/useResize';
+import Graph from "./assets/graph.gif";
 import ChangeProperty from "./assets/Properties.gif";
 import GalleryTutorial from "./assets/Gallery.gif";
+import Latex from "./assets/latex.gif";
 import FormatText from "./assets/formatText.gif";
+import Slider from "./assets/sliders.gif"
 import Image, { StaticImageData } from 'next/image';
 
 export interface tutorial {
@@ -24,8 +27,8 @@ function Card(props: tutorial) {
             padding: '1rem',
             aspectRatio: 1,
             background: "linear-gradient(45deg, rgba(8, 8, 8, 0.8), rgba(28, 28, 28, 0.4))",
-            backdropFilter : 'blur(6px)',
-            WebkitBackdropFilter : 'blur(6px)',
+            backdropFilter: 'blur(6px)',
+            WebkitBackdropFilter: 'blur(6px)',
             borderRadius: ".6rem",
             userSelect: 'none',
             textAlign: 'center',
@@ -88,6 +91,29 @@ export default function Worlds() {
             proper markdowns`,
             gif: FormatText
         },
+        {
+            title: "Defining variables",
+            info: `
+            Use the <s> markdown in a text
+            element to insert a new slider
+            and adjust its from, to, at and var
+            properties`,
+            gif: Slider
+        },
+        {
+            title: "Using Latex",
+            info: `
+            Use the <f> markdown in a text
+            element to insert latex`,
+            gif: Latex
+        },
+        {
+            title: "Render functions",
+            info: `
+            Select a graph and start
+            rendering new functions`,
+            gif: Graph
+        },
     ];
     const size = useResize();
 
@@ -101,14 +127,14 @@ export default function Worlds() {
     >
         <div
             style={{
-                width : size.x/2,
-                aspectRatio : 1,
-                scale : 6,
-                background : "radial-gradient(circle, rgba(73, 70, 249, 0.44) 0%, rgba(0,0,0,0) 50%)",
-                position : 'absolute',
-                zIndex : 0,
-                left : '100%',
-                right : 0,
+                width: size.x / 2,
+                aspectRatio: 1,
+                scale: 6,
+                background: "radial-gradient(circle, rgba(73, 70, 249, 0.44) 0%, rgba(0,0,0,0) 50%)",
+                position: 'absolute',
+                zIndex: 0,
+                left: '100%',
+                right: 0,
             }}
         />
         <motion.h1
@@ -118,7 +144,7 @@ export default function Worlds() {
                 fontSize: '3rem',
                 fontFamily: "Poppins",
                 fontWeight: 1000,
-                zIndex : 10
+                zIndex: 10
             }}
         >TUTORIALS</motion.h1>
 
@@ -135,7 +161,7 @@ export default function Worlds() {
                 userSelect: 'none',
                 opacity: 0.3,
                 size: "10px",
-                zIndex : 10
+                zIndex: 10
             }}
         >TUTORIALS</motion.h1>
         <motion.div
@@ -150,7 +176,7 @@ export default function Worlds() {
                 height: '65%',
                 display: 'flex',
                 gap: '2rem',
-                zIndex : 10,
+                zIndex: 10,
                 alignContent: "center"
             }}
 
@@ -159,19 +185,20 @@ export default function Worlds() {
                 drag
                 dragConstraints={{
                     left: 0,
-                    right: 1500,
+                    right: 500,
                     bottom: 0,
                     top: 0
                 }}
                 style={{
                     width: "90%",
                     display: 'flex',
+                    marginLeft : -500,
                     gap: '1rem',
                     background: "rgba(0,0,0,0)",
-                    zIndex : 10
+                    zIndex: 10
                 }}
             >
-                {...info.map(tutorial_info => <Card key = {tutorial_info.title} {...tutorial_info} />)}
+                {...info.map(tutorial_info => <Card key={tutorial_info.title} {...tutorial_info} />)}
 
             </motion.div>
         </motion.div>

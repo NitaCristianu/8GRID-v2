@@ -140,7 +140,7 @@ export default function Worlds() {
                 fontWeight: 1000,
                 zIndex: 10
             }}
-        >{loggedIn ? "MY WORLDS" : "ACCOUNTS"}</motion.h1>
+        >{loggedIn ? "SKETCHES" : "ACCOUNTS"}</motion.h1>
 
         <motion.h1
             style={{
@@ -156,7 +156,7 @@ export default function Worlds() {
                 opacity: 0.3,
                 zIndex: 30
             }}
-        >{loggedIn ? "MY WORLDS" : "ACCOUNTS"}</motion.h1>
+        >{loggedIn ? "SKETCHES" : "ACCOUNTS"}</motion.h1>
         <div style={{
             marginTop: '10%',
             display: 'flex',

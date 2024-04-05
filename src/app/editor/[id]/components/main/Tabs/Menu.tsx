@@ -90,7 +90,7 @@ export default function Menu() {
                     fontFamily: "Poppins",
                     fontWeight: 600
                 }}
-            >World Title</p>
+            >Sketch Name</p>
             <ReactTextareaAutosize
                 style={{
                     resize: 'none',

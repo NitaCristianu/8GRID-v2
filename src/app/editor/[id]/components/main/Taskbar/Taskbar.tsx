@@ -5,7 +5,6 @@ import selection_icon from './icons/selection.svg';
 import { motion } from "framer-motion";
 import { useAtom } from "jotai";
 import { modify } from "@/app/editor/[id]/data/management";
-
 import Image from "next/image";
 import SelectionIcon from "./assets/SelectionIcon.png";
 import MenuIcon from "./assets/MenuIcon2.png";
@@ -53,6 +52,7 @@ export default function Taskbar() {
                 style={{
                     fontWeight: 800,
                     fontFamily: "Poppins",
+                    color : 'white',
                 }}
                 animate = {{
                     opacity : current_mode == type ? 1 : 0,

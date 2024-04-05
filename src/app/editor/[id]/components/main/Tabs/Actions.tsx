@@ -8,6 +8,7 @@ import { ObtainPosition, decomposeSegment, findNonSurroundedLetters, getCoords, 
 import { ePoint, ePoints_Calc, eSegment, point_prop, point_prop_calc, segment_props, total_props } from "@/app/editor/[id]/data/props";
 import { clamp } from "three/src/math/MathUtils.js";
 import { v4 } from "uuid";
+import ReactTextareaAutosize from 'react-textarea-autosize';
 
 function getObject(id: string | null | undefined, points: ePoint[], points_calc: ePoints_Calc[], segments: eSegment[]) {
     if (typeof (id) != "string") return -1;
@@ -357,12 +358,11 @@ export default function Actions() {
                             placeholder="-"
                             onChange={(event) => modifyProperty(property, event)}
                         /> : null}
-                        {property.type == "text" ? <textarea
+                        {property.type == "text" ? <ReactTextareaAutosize
                             key={v4()}
                             style={{
                                 zIndex: 99,
                                 border: "none",
-                                height: "1.85rem",
                                 fontSize: "1.2rem",
                                 WebkitBackdropFilter: "blur(4px)",
                                 backdropFilter: "blur(4px)",
