@@ -34,7 +34,7 @@ export default function Actions() {
     const [variables, set_variables] = useAtom(VARIABLES);
     const [x, set_x] = useState(-500);
     const [y, set_y] = useState(0);
-
+    const t_area = useRef(null);
     const [sec] = useAtom(SECONDARY);
     const [acc] = useAtom(ACCENT);
     const [props, set_props] = useState<string[]>([]);
@@ -103,7 +103,6 @@ export default function Actions() {
         const points_clone = [...points];
         const segments_clone = [...segments];
         const points_calc_clone = [...points_calc];
-        console.log(prop);
         selected.forEach(id => {
             const finds = [
                 { table: points_clone, index: points_clone.findIndex(p => p.id == id) },
@@ -290,6 +289,7 @@ export default function Actions() {
                         {property.type == "color" ? <input
                             type="color"
                             title="color-lbl"
+                            key={property.type + selected[0]}
                             style={{
                                 zIndex: 99,
                                 width: "2rem",
@@ -304,32 +304,6 @@ export default function Actions() {
                                         rgbToHex(getObject(selected[0], points, points_calc, segments)[property.id]) || "#ffffff"
                                         : "#ffffff")
                                     : '#ffffff'
-                            }
-                            onChange={(event) => modifyProperty(property, event)}
-                        /> : null}
-                        {property.type == "checkbox" ? <input
-                            title="checkbox-lbl"
-                            type="checkbox"
-                            style={{
-                                zIndex: 99,
-                                border: "none",
-                                aspectRatio: 1,
-                                height: "2rem",
-                                WebkitBackdropFilter: "blur(4px)",
-                                backdropFilter: "blur(4px)",
-                                fontSize: "1.2rem",
-                                padding: 0,
-                                resize: "none",
-                                textAlign: "center",
-                                background: "rgba(20,20,20,0.2)",
-                                borderRadius: "0.8rem"
-                            }}
-                            value={
-                                selected.length == 1 ?
-                                    (getObject(selected[0], points, points_calc, segments) != -1 ?
-                                        getObject(selected[0], points, points_calc, segments)[property.id] || false
-                                        : false)
-                                    : false
                             }
                             onChange={(event) => modifyProperty(property, event)}
                         /> : null}
@@ -357,9 +331,10 @@ export default function Actions() {
                             }
                             placeholder="-"
                             onChange={(event) => modifyProperty(property, event)}
+                            key={property.type + selected[0]}
                         /> : null}
                         {property.type == "text" ? <ReactTextareaAutosize
-                            key={v4()}
+                            key={property.type + selected[0]}
                             style={{
                                 zIndex: 99,
                                 border: "none",
@@ -374,16 +349,15 @@ export default function Actions() {
                                 background: "rgba(20,20,20,0.2)",
                                 borderRadius: "0.8rem"
                             }}
-                            placeholder="-"
-                            value={
-                                selected.length > 0 ?
-                                    (getObject(selected[0], points, points_calc, segments) != -1 ?
-                                        (getObject(selected[0], points, points_calc, segments)[property.id] || "")
-                                        : "")
-                                    : ''
-                            }
+                            ref={t_area}
+                            placeholder={`${((points_calc.findIndex(p => p.id == selected[0])) > -1 ? points_calc[(points_calc.findIndex(p => p.id == selected[0]))] : "").formula}`}
                             onChange={(event) => {
-                                modifyProperty(property, event)
+                                points_calc[(points_calc.findIndex(p => p.id == selected[0]))].formula = event.target.value;
+                                t_area.current.value = points_calc[(points_calc.findIndex(p => p.id == selected[0]))].formula;
+                                // modifyProperty(property, event)
+                                // console.log(t_area);
+                                // console.log(property.type+selected[0])
+                                // t_area.current.focus();
                             }}
                         /> : null}
                     </motion.div>

@@ -53,18 +53,18 @@ function Card(props: CardProps) {
         >
             <Link
                 style={{
-                    fontFamily: "Popins",
+                    fontFamily: "Poppins",
                     color: "rgb(117, 169, 254)"
                 }}
                 href={`/editor/${props.id}`}
             >EDIT</Link>
             <Link
                 style={{
-                    fontFamily: "Popins",
+                    fontFamily: "Poppins",
                     color: "rgb(242, 42, 42)"
                 }}
                 href={`/scene/${props.id}`}
-            >SCENE</Link>
+            >VIEW</Link>
 
         </div>
         <button

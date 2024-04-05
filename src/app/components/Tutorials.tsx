@@ -185,14 +185,14 @@ export default function Worlds() {
                 drag
                 dragConstraints={{
                     left: 0,
-                    right: 500,
+                    right: 800,
                     bottom: 0,
                     top: 0
                 }}
                 style={{
                     width: "90%",
                     display: 'flex',
-                    marginLeft : -500,
+                    marginLeft : -800,
                     gap: '1rem',
                     background: "rgba(0,0,0,0)",
                     zIndex: 10
