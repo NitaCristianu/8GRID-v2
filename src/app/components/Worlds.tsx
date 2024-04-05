@@ -125,7 +125,7 @@ export default function Worlds() {
     }, [])
 
     return <motion.div
-        id={"my worlds"}
+        id={"sketches"}
         style={{
             width: size.x,
             height: size.y,
