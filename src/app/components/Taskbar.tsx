@@ -27,7 +27,7 @@ function Button({ menu }) {
                 color: "white",
                 zIndex : 50
             }}
-            offset={-100}
+            offset={-50}
             to={menu}
             smooth={true}
             duration={500}
