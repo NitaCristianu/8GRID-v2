@@ -15,9 +15,10 @@ function Card(props: world) {
         key={props.id}
         style={{
             width: 205,
+            border: '1px solid rgba(194, 194, 194, 0.5)',
+            background: "linear-gradient(120deg, rgba(98, 120, 248, 0.05), rgba(20, 20, 20, 0.2)",
+            backdropFilter: "blur(4px)",
             height: 205,
-            background: "linear-gradient(45deg, rgba(15, 15, 15, .1) 0%, rgba(30,30,30,.8) 100%)",
-            border: "2px solid rgb(200, 200, 200)",
             borderRadius: "0.8rem",
             zIndex: 20,
             display: 'flex',
@@ -45,16 +46,26 @@ function Card(props: world) {
                 gap: '1rem'
             }}
         >
-            <Link
-                style={{
-                    fontFamily: "Poppins",
-                    color: "rgb(242, 42, 42)"
-                }}
-                href={`/scene/${props.id}`}
-            >VIEW</Link>
+            <div style={{
+                display: 'flex',
+                gap: 5
+            }}>
+                <Link
+                    style={{
+                        fontFamily: "Poppins",
+                        fontWeight: 800,
+                        color: "rgba(100, 145, 250)"
+                    }}
+                    href={`/scene/${props.id}`}
+                >VIEW</Link>
+                <svg xmlns="http://www.w3.org/2000/svg" style={{ marginTop: 4 }} width="20px" height="20px" viewBox="0 0 24 24" fill="none">
+                    <path d="M15.0007 12C15.0007 13.6569 13.6576 15 12.0007 15C10.3439 15 9.00073 13.6569 9.00073 12C9.00073 10.3431 10.3439 9 12.0007 9C13.6576 9 15.0007 10.3431 15.0007 12Z" stroke="rgb(100, 144, 249)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M12.0012 5C7.52354 5 3.73326 7.94288 2.45898 12C3.73324 16.0571 7.52354 19 12.0012 19C16.4788 19 20.2691 16.0571 21.5434 12C20.2691 7.94291 16.4788 5 12.0012 5Z" stroke="rgb(100, 144, 249)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
 
         </div>
-        
+
     </motion.div>
 }
 
@@ -62,22 +73,21 @@ function FilterButton(props: { type: string, formData: FormDataObject, setFormDa
     return <div
         style={{
             display: 'flex',
-            flexDirection: "column"
+            flexDirection: "column",
+            marginBottom: 20
         }}
     >
-        <p
-            style={{
-                fontFamily: "Poppins"
-            }}
-        >Search by {props.type}</p>
         <ReactTextareaAutosize
             style={{
-                background: 'rgba(20,20,20,.7)',
-                borderRadius: "0.8rem",
-                outline: "1 solid rgb(200, 200, 200)",
+                borderRadius: "1rem",
+                outline: "1 solid rgba(200, 200, 200, 0.5)",
+                background: "linear-gradient(130deg, rgba(250, 250, 250, 0.05), rgba(0, 0, 0, 0.1)",
+                border: '1px solid rgba(194, 194, 194, 0.2)',
+                backdropFilter: "blur(5px)",
                 resize: 'none',
                 padding: '1rem'
             }}
+            placeholder={`Search by ${props.type}`}
             onChange={(event: ChangeEvent<HTMLTextAreaElement>) => {
                 props.setFormData(prev => {
                     const clone = { ...prev };
@@ -138,11 +148,11 @@ export default function Workspace() {
                 }))
             })
             .catch((error) => console.log('error', error));
-            
+
 
     }
 
-    return <motion.div
+    return <div
         id={"explorer"}
         style={{
             width: '100%',
@@ -157,26 +167,18 @@ export default function Workspace() {
                 margin: '1rem',
                 fontSize: '3rem',
                 fontFamily: "Poppins",
-                fontWeight: 1000
-            }}
-        >EXPLORER</motion.h1>
-        <motion.h1
-            style={{
-                color: "#DFDFD1",
-                margin: '1rem',
-                fontSize: '3rem',
-                fontFamily: "Poppins",
                 fontWeight: 1000,
-                marginLeft: 25,
-                marginTop: -92,
                 userSelect: 'none',
-                opacity: 0.3,
-                size: "10px"
+                opacity: 0.9,
+                textShadow: 'rgb(255, 255, 255) 0px 0px 50px',
+                size: "10px",
+                justifySelf: 'center',
+                width: '100%',
+                textAlign: 'center',
+                marginTop: 40,
             }}
         >EXPLORER</motion.h1>
-        <br />
-        <br />
-        <div
+        {/* <div
             style={{
                 width: size.x / 2,
                 aspectRatio: 1,
@@ -189,7 +191,7 @@ export default function Workspace() {
                 right: 0,
                 marginTop: '10%'
             }}
-        />
+        /> */}
         <div
             style={{
                 width: '80%',
@@ -202,23 +204,24 @@ export default function Workspace() {
         >
             <div
                 style={{
-                    border: '1px solid rgb(194, 194, 194)',
-                    background: "rgb(20, 20, 20, 0.4)",
+                    border: '1px solid rgba(194, 194, 194, 0.5)',
+                    background: "linear-gradient(120deg, rgba(250, 250, 250, 0.05), rgba(20, 20, 20, 0.2)",
+                    backdropFilter: "blur(4px)",
                     height: '90%',
                     width: '80%',
-                    borderRadius: '0.8rem',
+                    borderRadius: '1.1rem',
                     zIndex: 50,
-                    display : 'flex',
-                    flexDirection : 'row',
-                    overflowY : "scroll",
-                    flexWrap : 'wrap',
-                    padding : "2rem",
-                    gap : '2rem'
+                    display: 'flex',
+                    flexDirection: 'row',
+                    overflowY: "scroll",
+                    flexWrap: 'wrap',
+                    padding: "2rem",
+                    gap: '2rem'
                 }}
             >
                 {worlds.map(world => (
                     <Card
-                        key = {world.id}
+                        key={world.id}
                         {...world}
                     />
                 ))}
@@ -226,7 +229,7 @@ export default function Workspace() {
 
             <div
                 style={{
-                    background: "rgba(20, 20, 20, .5)",
+                    background: "linear-gradient(120deg, rgba(250, 250, 250, 0.05), rgba(20, 20, 20, 0.2)",
                     height: '100%',
                     zIndex: 50,
                     width: '30%',
@@ -234,19 +237,24 @@ export default function Workspace() {
                     display: 'flex',
                     flexDirection: 'column',
                     paddingTop: '6%',
-                    border: '1px solid rgb(194, 194, 194)',
+                    border: '1px solid rgba(194, 194, 194, 0.3)',
                     gap: '1.5rem',
-                    marginLeft : '5%',
-                    padding : '1.5%',
-                    alignItems : 'center',
+                    marginLeft: '5%',
+                    padding: '3.5%',
+                    alignItems: 'center',
+                    backdropFilter: "blur(5px)"
                 }}
             >
 
                 <motion.button
                     style={{
-                        borderRadius: '0.2rem', zIndex: 50,
-                        background: "rgb(80, 142, 250)",
+                        borderRadius: '1rem',
+                        zIndex: 50,
+                        background: "linear-gradient(130deg, rgba(250, 250, 250, 0.05), rgba(85, 228, 78, 0.1)",
+                        border: '1px solid rgba(194, 194, 194, 0.2)',
+                        backdropFilter: "blur(5px)",
                         width: '90%',
+                        height: '50px'
 
                     }}
                     whileHover={{
@@ -257,8 +265,8 @@ export default function Workspace() {
                     }}
                     onTap={Search}
                 >Search</motion.button>
-                <div>
-                    <div>
+                <div style={{ zIndex: 50 }}>
+                    <div style={{ zIndex: 50 }}>
                         <FilterButton
                             type="username"
                             setFormData={setFormData}
@@ -275,6 +283,6 @@ export default function Workspace() {
             </div>
         </div>
 
-    </motion.div>
+    </div>
 
 }

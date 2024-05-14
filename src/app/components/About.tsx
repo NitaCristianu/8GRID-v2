@@ -11,7 +11,6 @@ export default function About() {
         style={{
             width: size.x,
             height: size.y,
-            background: "black",
         }}
     >
         <br />

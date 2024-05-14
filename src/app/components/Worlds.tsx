@@ -22,7 +22,6 @@ function Card(props: CardProps) {
         style={{
             width: 250,
             height: 250,
-            background: "linear-gradient(45deg, rgba(15, 15, 15, .1) 0%, rgba(30,30,30,.8) 100%)",
             border: "2px solid rgb(200, 200, 200)",
             borderRadius: "0.8rem",
             zIndex: 20,

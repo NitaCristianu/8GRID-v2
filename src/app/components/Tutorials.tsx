@@ -26,7 +26,6 @@ function Card(props: tutorial) {
             height: '100%',
             padding: '1rem',
             aspectRatio: 1,
-            background: "linear-gradient(45deg, rgba(8, 8, 8, 0.8), rgba(28, 28, 28, 0.4))",
             backdropFilter: 'blur(6px)',
             WebkitBackdropFilter: 'blur(6px)',
             borderRadius: ".6rem",
@@ -125,7 +124,7 @@ export default function Worlds() {
             background: "#070707",
         }}
     >
-        <div
+        {/* <div
             style={{
                 width: size.x / 2,
                 aspectRatio: 1,
@@ -136,7 +135,7 @@ export default function Worlds() {
                 left: '100%',
                 right: 0,
             }}
-        />
+        /> */}
         <motion.h1
             style={{
                 color: "#DFDFD1",

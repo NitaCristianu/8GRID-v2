@@ -6,6 +6,7 @@ import About from "./components/About";
 import Worlds from "./components/Worlds";
 import Tutorials from "./components/Tutorials";
 import Explorer from "./components/Workspace";
+import Background from './components/Background';
 // import Workspace from "./components/Workspace";
 // import { motion } from "framer-motion";
 // import { useEffect, useState } from "react";
@@ -15,13 +16,8 @@ export default function Home() {
   
   return (
     <div style={{overflowX :'hidden'}}>
+      <Background/>
       <Taskbar menus={menus}></Taskbar>
-
-      <br />
-      <br />
-      <br />
-      <br />
-
       {menus.map((menu) => {
         if (menu == "about")
           return (<About key = {menu}/>)
