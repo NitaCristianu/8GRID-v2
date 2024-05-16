@@ -22,7 +22,8 @@ function Card(props: CardProps) {
         style={{
             width: 250,
             height: 250,
-            border: "2px solid rgb(200, 200, 200)",
+            border: "1px solid rgba(200, 200, 200, 0.4)",
+            backdropFilter: "blur(4px)",
             borderRadius: "0.8rem",
             zIndex: 20,
             display: 'flex',
@@ -42,6 +43,7 @@ function Card(props: CardProps) {
             style={{
                 fontFamily: "Poppins",
                 fontWeight: 800
+
             }}
         >{props.title}</h1>
         <div
@@ -53,14 +55,17 @@ function Card(props: CardProps) {
             <Link
                 style={{
                     fontFamily: "Poppins",
-                    color: "rgb(117, 169, 254)"
+                    color: "rgb(49, 239, 87)",
+                    fontWeight: 600,
+
                 }}
                 href={`/editor/${props.id}`}
             >EDIT</Link>
             <Link
                 style={{
                     fontFamily: "Poppins",
-                    color: "rgb(242, 42, 42)"
+                    fontWeight: 600,
+                    color: "rgb(117, 169, 254)"
                 }}
                 href={`/scene/${props.id}`}
             >VIEW</Link>
@@ -70,7 +75,7 @@ function Card(props: CardProps) {
             style={{
                 fontFamily: "Poppins",
                 fontWeight: 300,
-                color: "rgb(69, 17, 17)",
+                color: "rgb(181, 19, 19)",
             }}
             onClick={() => {
                 // Detele world\
@@ -79,10 +84,19 @@ function Card(props: CardProps) {
                         'Content-Type': 'application/json',
                     },
                     method: 'POST',
-                    body: JSON.stringify({ id : props.id })
+                    body: JSON.stringify({ id: props.id })
                 })
+
             }}
-        >Delete</button>
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 24 24" fill="none">
+                <path d="M10 11V17" stroke="#a0a4a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M14 11V17" stroke="#a0a4a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M4 7H20" stroke="#a0a4a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#a0a4a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#a0a4a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button>
     </motion.div>
 }
 
@@ -93,20 +107,23 @@ export default function Worlds() {
     const [doesUserExists, setUserExistence] = useState(false);
     const [loggedIn, setLogIn] = useState(false);
     const [data, setData] = useState([]);
+    const [accs, setAccs] = useState([]);
 
     useEffect(() => {
     }, [data])
 
     useEffect(() => {
-        if (!loggedIn) return;
-        fetch('/api/user', {
+        fetch('/api/get-accs', {
             headers: {
                 'Content-Type': 'application/json',
             },
-            method: 'POST',
-            body: JSON.stringify(formData)
+            method: 'GET',
         })
-        localStorage.setItem
+            .then((response) => response.json())
+            .then((d) => {
+                setAccs(d);
+            })
+            .catch((error) => console.log('error', error));
     }, [loggedIn]);
 
     useEffect(() => {
@@ -130,34 +147,24 @@ export default function Worlds() {
             height: size.y,
         }}
     >
-        <motion.h1
-            style={{
-                color: "#DFDFD1",
-                margin: '1rem',
-                fontSize: '3rem',
-                fontFamily: "Poppins",
-                fontWeight: 1000,
-                zIndex: 10
-            }}
-        >{loggedIn ? "SKETCHES" : "ACCOUNTS"}</motion.h1>
 
         <motion.h1
             style={{
-                color: "#DFDFD1",
-                margin: '1rem',
+                color: "rgb(42, 141, 240)",
                 fontSize: '3rem',
+                textAlign: "center",
                 fontFamily: "Poppins",
                 fontWeight: 1000,
                 overflowX: 'clip',
                 marginLeft: 25,
-                marginTop: -92,
                 userSelect: 'none',
-                opacity: 0.3,
+                marginTop: 150,
+                textShadow: 'rgb(42, 141, 240) 0px 0px 50px',
+                opacity: 0.9,
                 zIndex: 30
             }}
         >{loggedIn ? "SKETCHES" : "ACCOUNTS"}</motion.h1>
         <div style={{
-            marginTop: '10%',
             display: 'flex',
             flexDirection: 'row',
             height: '65%',
@@ -167,17 +174,20 @@ export default function Worlds() {
 
             {loggedIn ?
                 <motion.div
-
+                    className={styles.ChenarPrincipal}
                     style={{
                         borderRadius: ".8rem",
+                        border: '2px solid rgba(185, 185, 185, 0.5)',
                         width: '50%',
                         marginLeft: '5%',
                         overflowY: "scroll",
-                        height: '100%',
+                        height: '110%',
                         display: 'flex',
                         gap: '2rem',
+                        backdropFilter: "blur(5px)",
                         zIndex: 150,
-                        padding: '0.5rem',
+                        justifyContent: "center",
+                        padding: '2.5rem',
                         flexWrap: 'wrap',
                     }}
 
@@ -185,11 +195,12 @@ export default function Worlds() {
                     <motion.button
                         style={{
                             color: 'white',
-                            border: '2px solid rgb(185, 185, 185)',
-                            background: 'linear-gradient(45deg, #ccccb3a1 0%, #ccccb3ef 100%)',
+                            border: '2px solid rgba(185, 185, 185, 0.5)',
+                            background: 'linear-gradient(45deg, rgba(124, 195, 233, 0.2) 0%, rgba(25, 243, 116, 0.3) 100%)',
                             width: 250,
                             height: 250,
                             fontFamily: "Poppins",
+                            backdropFilter: "blur(2px)",
                             fontSize: 100,
                             fontWeight: 1000,
                             borderRadius: '0.8rem',
@@ -228,7 +239,7 @@ export default function Worlds() {
 
                         }}
                     >+</motion.button>
-                    {...(data.filter(world => world.userId == formData.name)).map(world => <Card user={formData.name} {...world} key = {v4()} />)}
+                    {...(data.filter(world => world.userId == formData.name)).map(world => <Card user={formData.name} {...world} key={v4()} />)}
                 </motion.div> : null}
             <motion.div
                 style={{
@@ -253,31 +264,76 @@ export default function Worlds() {
                             }}
                         >Welcome {formData.name}</h1>
                         <br />
-                        <motion.button
+                        <div
                             style={{
-                                zIndex: 1050,
-                                background: "rgba(242, 52, 52, .5)",
-                                borderRadius: '0.8rem',
-                                padding: '.5rem',
-                                fontFamily: "Poppins",
-                                color: "rgb(229, 82, 82)"
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: 10,
+                                width: 150
                             }}
-                            onTap={() => {
-                                setLogIn(false);
-                            }}
-                        >log out</motion.button>
-                    </div> :
+                        >
+                            <motion.button
+                                style={{
+                                    zIndex: 1050,
+                                    background: "linear-gradient(20deg, rgba(242, 52, 52, .1), rgba(250, 1, 1, 0.2))",
+                                    paddingInline: "2rem",
+                                    borderRadius: '0.8rem',
+                                    border: "1px solid rgba(255, 0, 0, 0.3)",
+                                    padding: '.5rem',
+                                    backdropFilter: "blur(3px)",
+                                    fontFamily: "Poppins",
+                                    fontWeight: 500,
+                                    color: "rgb(229, 82, 82)"
+                                }}
+                                onTap={() => {
+                                    setLogIn(false);
+                                }}
+                            >log out</motion.button>
+                            <motion.button
+                                style={{
+                                    zIndex: 1050,
+                                    background: "linear-gradient(20deg, rgba(52, 106, 242, 0.1), rgba(1, 121, 250, 0.2))",
+                                    backdropFilter: "blur(3px)",
+                                    paddingInline: "2rem",
+                                    borderRadius: '0.8rem',
+                                    border: "1px solid rgba(13, 0, 255, 0.3)",
+                                    padding: '.5rem',
+                                    fontFamily: "Poppins",
+                                    fontWeight: 500,
+                                    color: "rgb(82, 182, 229)"
+                                }}
+                                onClick={() => {
+                                    fetch('/api/create-world', {
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                        },
+                                        method: 'GET',
+                                    })
+                                        .then((response) => response.json())
+                                        .then((d) => {
+                                            setData(d);
+                                        })
+                                        .catch((error) => console.log('error', error));
+                                }}
+                            >refresh</motion.button>
+                        </div>
+                    </div>
+                    :
                     // LOG OUT
                     <div
                         style={{
-                            zIndex: 50
+                            zIndex: 50,
+                            display: "flex",
+                            gap: 500,
+                            marginLeft: -size.x / 4.8,
+                            width: size.x * 0.8,
                         }}>
                         <form
                             style={{
                                 zIndex: 50,
                                 display: 'flex',
                                 flexDirection: 'column',
-                                width: '75%',
+                                width: '50%',
                                 gap: '1rem'
                             }}
                             onSubmit={() => {
@@ -285,7 +341,14 @@ export default function Worlds() {
                                     formData.name != "" &&
                                     formData.password != ""
                                 ) {
-                                    setLogIn(true);
+                                    var found = false;
+                                    accs.forEach(acc => {
+                                        if (acc.id == formData.name && formData.password == acc.password) {
+                                            setLogIn(true);
+                                            found = true;
+                                        }
+                                    })
+                                    if (!found) window.alert("the username or password is wrong");
                                 }
                             }}
                         >
@@ -330,10 +393,125 @@ export default function Worlds() {
                                 <input
                                     style={{
                                         resize: 'none',
+                                        background: "rgba(22, 22, 22, 0.0)",
+                                        padding: 10,
+                                        borderRadius: '0.8rem',
+                                        zIndex: 60,
+                                        backdropFilter: "blur(5px)",
+                                        width: '50%',
+                                        border: "1px solid rgb(201, 201, 201)"
+                                    }}
+                                    type="password"
+                                    title="password"
+                                    onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                                        setFormData(prev => ({
+                                            password: event.target.value || "",
+                                            name: prev.name
+                                        }));
+                                    }}
+                                />
+                            </div>
+
+                            <button
+                                type="submit"
+                                style={{
+                                    background: "linear-gradient(60deg, rgba(32, 130, 242, 0.2), rgba(64, 2, 150, 0.5))",
+                                    backdropFilter: "blur(5px)",
+                                    padding: 10,
+                                    borderRadius: '0.8rem',
+                                    border: "1px solid rgb(201, 201, 201)",
+                                    zIndex: 60,
+                                    textAlign: 'center',
+
+                                }}
+                                title="loginbutton"
+
+                            >Log in
+                            </button>
+                        </form>
+                        <form
+                            style={{
+                                zIndex: 50,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                width: '50%',
+                                gap: '1rem'
+                            }}
+                            onSubmit={() => {
+                                if (
+                                    formData.name != "" &&
+                                    formData.password != ""
+                                ) {
+                                    var found = false;
+                                    accs.forEach(acc => {
+                                        if (acc.id == formData.name) {
+                                            found = true;
+                                        }
+                                    })
+                                    if (found)
+                                        window.alert("Account already exists")
+                                    else {
+                                        fetch('/api/signin', {
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                            },
+                                            method: 'POST',
+                                            body: JSON.stringify({
+                                                name: formData.name,
+                                                password: formData.password
+                                            })
+                                        })
+                                        setLogIn(true);
+                                    }
+                                }
+                            }}
+                        >
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    alignContent: 'center',
+                                    alignItems: 'center',
+                                    gap: '1rem'
+                                }}
+                            >
+                                <p>Username</p>
+                                <input
+                                    style={{
+                                        resize: 'none',
                                         background: "rgba(22, 22, 22, 0.5)",
                                         padding: 10,
                                         borderRadius: '0.8rem',
                                         zIndex: 60,
+                                        width: '50%',
+                                        border: "1px solid rgb(201, 201, 201)"
+                                    }}
+                                    type="text"
+                                    title="user"
+                                    onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                                        setFormData(prev => ({
+                                            password: prev.password,
+                                            name: event.target.value || ""
+                                        }))
+                                    }}
+                                />
+                            </div>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    alignContent: 'center',
+                                    alignItems: 'center',
+                                    gap: '1rem'
+                                }}
+                            >
+                                <p>Password</p>
+                                <input
+                                    style={{
+                                        resize: 'none',
+                                        background: "rgba(22, 22, 22, 0.0)",
+                                        padding: 10,
+                                        borderRadius: '0.8rem',
+                                        zIndex: 60,
+                                        backdropFilter: "blur(5px)",
                                         width: '50%',
                                         border: "1px solid rgb(201, 201, 201)"
                                     }}
@@ -347,10 +525,12 @@ export default function Worlds() {
                                     }}
                                 />
                             </div>
+
                             <button
                                 type="submit"
                                 style={{
-                                    background: "rgba(28, 166, 204, 0.5)",
+                                    background: "linear-gradient(50deg, rgba(32, 130, 242, 0.2), rgba(32, 150, 101, 0.5))",
+                                    backdropFilter: "blur(5px)",
                                     padding: 10,
                                     borderRadius: '0.8rem',
                                     border: "1px solid rgb(201, 201, 201)",
@@ -360,7 +540,8 @@ export default function Worlds() {
                                 }}
                                 title="loginbutton"
 
-                            >Log in / Sign in</button>
+                            >Sign in
+                            </button>
                         </form>
                     </div>}
             </motion.div>

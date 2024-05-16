@@ -138,27 +138,18 @@ export default function Worlds() {
         /> */}
         <motion.h1
             style={{
-                color: "#DFDFD1",
+                color: "rgb(42, 141, 240)",
+                textShadow: 'rgb(42, 141, 240) 0px 0px 50px',
                 margin: '1rem',
                 fontSize: '3rem',
                 fontFamily: "Poppins",
                 fontWeight: 1000,
-                zIndex: 10
-            }}
-        >TUTORIALS</motion.h1>
-
-        <motion.h1
-            style={{
-                color: "#DFDFD1",
-                margin: '1rem',
-                fontSize: '3rem',
-                fontFamily: "Poppins",
-                fontWeight: 1000,
+                textAlign:"center",
                 overflowX: 'clip',
                 marginLeft: 25,
                 marginTop: -92,
                 userSelect: 'none',
-                opacity: 0.3,
+                opacity: 0.9,
                 size: "10px",
                 zIndex: 10
             }}

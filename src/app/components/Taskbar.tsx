@@ -55,7 +55,7 @@ export default function Taskbar({ menus }) {
                     height : '100%',
                     justifyContent: "center",
                     alignItems : "center",
-                    background: "rgba(13, 13, 13, 0.68)",
+                    background: "rgba(13, 13, 13, 0.28)",
                     backdropFilter : 'blur(6px)',
                     WebkitBackdropFilter : 'blur(6px)',
                     zIndex : 920,
@@ -73,7 +73,7 @@ export default function Taskbar({ menus }) {
                 style={{
                     width: '100%',
                     height: '2px',
-                    background: 'white',
+                    background: 'linear-gradient(180deg, rgba(255,255,255,.2), rgba(0,0,0,0))',
                     zIndex: 910,
                 }}></div>
         </div>

@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import style from './styles.module.css';
 import { frameData, motion, useForceUpdate } from "framer-motion";
 import useResize from '../editor/[id]/hooks/useResize';
 import ReactTextareaAutosize from 'react-textarea-autosize';
@@ -81,11 +82,14 @@ function FilterButton(props: { type: string, formData: FormDataObject, setFormDa
             style={{
                 borderRadius: "1rem",
                 outline: "1 solid rgba(200, 200, 200, 0.5)",
-                background: "linear-gradient(130deg, rgba(250, 250, 250, 0.05), rgba(0, 0, 0, 0.1)",
-                border: '1px solid rgba(194, 194, 194, 0.2)',
+                background: "rgba(17, 17, 18, 0.4)",
+                border: '1px solid rgba(47, 120, 239, 0.2)',
                 backdropFilter: "blur(5px)",
+                WebkitBackdropFilter : "blur(5px)",
                 resize: 'none',
-                padding: '1rem'
+                textAlign : 'center',
+                height: 30,
+                padding: '1.3rem'
             }}
             placeholder={`Search by ${props.type}`}
             onChange={(event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -163,14 +167,14 @@ export default function Workspace() {
         <br />
         <motion.h1
             style={{
-                color: "#DFDFD1",
+                color: "rgb(42, 141, 240)",
                 margin: '1rem',
                 fontSize: '3rem',
                 fontFamily: "Poppins",
                 fontWeight: 1000,
                 userSelect: 'none',
                 opacity: 0.9,
-                textShadow: 'rgb(255, 255, 255) 0px 0px 50px',
+                textShadow: 'rgb(42, 141, 240) 0px 0px 50px',
                 size: "10px",
                 justifySelf: 'center',
                 width: '100%',
@@ -203,11 +207,12 @@ export default function Workspace() {
             }}
         >
             <div
+                className={style.ChenarPrincipal}
                 style={{
                     border: '1px solid rgba(194, 194, 194, 0.5)',
-                    background: "linear-gradient(120deg, rgba(250, 250, 250, 0.05), rgba(20, 20, 20, 0.2)",
+                    background: "rgba(0, 0, 0, 0.3)",
                     backdropFilter: "blur(4px)",
-                    height: '90%',
+                    height: size.y * 0.75,
                     width: '80%',
                     borderRadius: '1.1rem',
                     zIndex: 50,
@@ -216,7 +221,7 @@ export default function Workspace() {
                     overflowY: "scroll",
                     flexWrap: 'wrap',
                     padding: "2rem",
-                    gap: '2rem'
+                    gap: '2rem',
                 }}
             >
                 {worlds.map(world => (
@@ -229,7 +234,6 @@ export default function Workspace() {
 
             <div
                 style={{
-                    background: "linear-gradient(120deg, rgba(250, 250, 250, 0.05), rgba(20, 20, 20, 0.2)",
                     height: '100%',
                     zIndex: 50,
                     width: '30%',
@@ -250,8 +254,8 @@ export default function Workspace() {
                     style={{
                         borderRadius: '1rem',
                         zIndex: 50,
-                        background: "linear-gradient(130deg, rgba(250, 250, 250, 0.05), rgba(85, 228, 78, 0.1)",
-                        border: '1px solid rgba(194, 194, 194, 0.2)',
+                        background : "linear-gradient(120deg, rgba(54, 112, 247, 0.4), rgba(20, 20, 145, 0.3))",
+                        border: '1px solid rgba(194,194,194, 0.3)',
                         backdropFilter: "blur(5px)",
                         width: '90%',
                         height: '50px'
