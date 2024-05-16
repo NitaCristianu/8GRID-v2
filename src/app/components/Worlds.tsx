@@ -540,7 +540,7 @@ export default function Worlds() {
                                 }}
                                 title="loginbutton"
 
-                            >Sign in
+                            >Sign up
                             </button>
                         </form>
                     </div>}
