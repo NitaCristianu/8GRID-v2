@@ -77,7 +77,7 @@ const Background = () => {
     });
 
     return (
-        <Canvas style={{ position: 'absolute', width: '100%', height: '500%' }}>
+        <Canvas style={{ position: 'absolute', width: '100%', height: '350%' }}>
             <mesh>
                 <planeGeometry args={[size.x, size.y]} />
                 <shaderMaterial uniforms={uniformsRef.current} fragmentShader={BACKGROUND_SHADER} />

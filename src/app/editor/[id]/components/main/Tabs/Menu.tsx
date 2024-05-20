@@ -117,12 +117,20 @@ export default function Menu() {
                 textAlign: "center"
             }}
         >{world_id}</p>
-        <br />
-        <button onClick={OnSave} >Save</button>
-        <br />
-        <Link style={{
-            textAlign: 'center',
+        <div
+            style={{
+                display : 'flex',
+                flexDirection : 'column',
+                marginTop : 20,
+                gap : 16,
+                justifyContent : "end"
+            }}
+        >
+            <button onClick={OnSave} >Save</button>
+            <Link style={{
+                textAlign: 'center',
 
-        }} href={"/"} >Quit</Link>
+            }} href={"/"} >Quit</Link>
+        </div>
     </motion.div >)
 }

@@ -285,6 +285,12 @@ export default function Worlds() {
                                     fontWeight: 500,
                                     color: "rgb(229, 82, 82)"
                                 }}
+                                whileTap={{
+                                    scale: 1.1
+                                }}
+                                whileHover={{
+                                    scale: 0.9
+                                }}
                                 onTap={() => {
                                     setLogIn(false);
                                 }}
@@ -301,6 +307,12 @@ export default function Worlds() {
                                     fontFamily: "Poppins",
                                     fontWeight: 500,
                                     color: "rgb(82, 182, 229)"
+                                }}
+                                whileTap={{
+                                    scale: 1.1
+                                }}
+                                whileHover={{
+                                    scale: 0.9
                                 }}
                                 onClick={() => {
                                     fetch('/api/create-world', {
@@ -323,7 +335,9 @@ export default function Worlds() {
                     <div
                         style={{
                             zIndex: 50,
+                            height : size.y * 0.8,
                             display: "flex",
+                            alignItems : "center",
                             gap: 500,
                             marginLeft: -size.x / 4.8,
                             width: size.x * 0.8,
@@ -412,7 +426,13 @@ export default function Worlds() {
                                 />
                             </div>
 
-                            <button
+                            <motion.button
+                                whileTap={{
+                                    scale : 1.1
+                                }}
+                                whileHover={{
+                                    scale : 0.95
+                                }}
                                 type="submit"
                                 style={{
                                     background: "linear-gradient(60deg, rgba(32, 130, 242, 0.2), rgba(64, 2, 150, 0.5))",
@@ -427,7 +447,7 @@ export default function Worlds() {
                                 title="loginbutton"
 
                             >Log in
-                            </button>
+                            </motion.button>
                         </form>
                         <form
                             style={{
@@ -526,7 +546,13 @@ export default function Worlds() {
                                 />
                             </div>
 
-                            <button
+                            <motion.button
+                                whileTap={{
+                                    scale : 1.1
+                                }}
+                                whileHover={{
+                                    scale : 0.95
+                                }}
                                 type="submit"
                                 style={{
                                     background: "linear-gradient(50deg, rgba(32, 130, 242, 0.2), rgba(32, 150, 101, 0.5))",
@@ -541,7 +567,7 @@ export default function Worlds() {
                                 title="loginbutton"
 
                             >Sign up
-                            </button>
+                            </motion.button>
                         </form>
                     </div>}
             </motion.div>

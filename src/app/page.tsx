@@ -12,16 +12,17 @@ import Background from './components/Background';
 // import { useEffect, useState } from "react";
 
 export default function Home() {
-  const menus = ["explorer", "sketches", "tutorials", "about"];
+  const menus = ["explorer", "sketches", "tutorials"];
   
   return (
     <div style={{overflowX :'hidden'}}>
       <Background/>
-      <Taskbar menus={menus}></Taskbar>
+      <Taskbar menus={menus
+      }></Taskbar>
       {menus.map((menu) => {
-        if (menu == "about")
-          return (<About key = {menu}/>)
-          else if (menu == "sketches")
+        // if (menu == "about")
+        //   return (<About key = {menu}/>)
+          if (menu == "sketches")
           return <Worlds key = {menu}/>
           else if(menu == "tutorials")
            return <Tutorials key = {menu}/>
